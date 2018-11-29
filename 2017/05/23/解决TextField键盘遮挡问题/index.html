@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="先上代码，之后说明： 12345- (void)viewDidLoad &amp;#123;    [super viewDidLoad];    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification ob">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决TextField键盘遮挡问题">
+<meta property="og:url" content="http://www.hanyang.website/2017/05/23/解决TextField键盘遮挡问题/index.html">
+<meta property="og:site_name" content="GeorgeHan&#39;s Notes">
+<meta property="og:description" content="先上代码，之后说明： 12345- (void)viewDidLoad &amp;#123;    [super viewDidLoad];    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification ob">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.hanyang.website/img/20170523/1.png">
+<meta property="og:image" content="http://www.hanyang.website/img/20170523/2.png">
+<meta property="og:updated_time" content="2017-05-23T07:33:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="解决TextField键盘遮挡问题">
+<meta name="twitter:description" content="先上代码，之后说明： 12345- (void)viewDidLoad &amp;#123;    [super viewDidLoad];    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification ob">
+<meta name="twitter:image" content="http://www.hanyang.website/img/20170523/1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.hanyang.website/2017/05/23/解决TextField键盘遮挡问题/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>解决TextField键盘遮挡问题 | GeorgeHan's Notes</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">GeorgeHan's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Manners maketh man.</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2017/05/23/解决TextField键盘遮挡问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GeorgeHan">
+      <meta itemprop="description" content="一个程序猿的独白...">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GeorgeHan's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">解决TextField键盘遮挡问题
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-05-23 11:13:50 / 修改时间：15:33:29" itemprop="dateCreated datePublished" datetime="2017-05-23T11:13:50+08:00">2017-05-23</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>先上代码，之后说明：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">    [[NSNotificationCenter defaultCenter]<span class="string">addObserver:</span>self <span class="string">selector:</span><span class="meta">@selector</span>(<span class="string">keyboardWillShow:</span>) <span class="string">name:</span>UIKeyboardWillShowNotification <span class="string">object:</span>nil];</span><br><span class="line">    [[NSNotificationCenter defaultCenter]<span class="string">addObserver:</span>self <span class="string">selector:</span><span class="meta">@selector</span>(<span class="string">keyboardWillHide:</span>) <span class="string">name:</span>UIKeyboardWillHideNotification <span class="string">object:</span>nil];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)keyboardWillShow:(<span class="built_in">NSNotification</span> *)notification &#123;</span><br><span class="line">    <span class="comment">//获取键盘高度，在不同设备上，以及中英文下是不同的</span></span><br><span class="line">    <span class="built_in">CGFloat</span> kbHeight = [[notification.userInfo objectForKey:<span class="built_in">UIKeyboardFrameEndUserInfoKey</span>] <span class="built_in">CGRectValue</span>].size.height;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CGRect</span> btnFrame = <span class="keyword">self</span>.confirmBtn.frame;</span><br><span class="line">    <span class="built_in">CGFloat</span> btnBottom = btnFrame.origin.y+<span class="keyword">self</span>.view.frame.origin.y+btnFrame.size.height;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">CGFloat</span> offset = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ((btnBottom + kbHeight) &lt; SCREEN_HEIGHT) &#123;</span><br><span class="line">        <span class="comment">//如果确认按钮不被键盘遮挡，view不移动</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        offset = btnBottom + kbHeight - <span class="keyword">self</span>.view.frame.size.height + <span class="number">50</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 取得键盘的动画时间，这样可以在视图上移的时候更连贯</span></span><br><span class="line">    <span class="keyword">double</span> duration = [[notification.userInfo objectForKey:<span class="built_in">UIKeyboardAnimationDurationUserInfoKey</span>] doubleValue];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//将视图上移计算好的偏移</span></span><br><span class="line">    <span class="keyword">if</span>(offset &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        [<span class="built_in">UIView</span> animateWithDuration:duration animations:^&#123;</span><br><span class="line">            <span class="keyword">self</span>.view.frame = <span class="built_in">CGRectMake</span>(<span class="number">0.0</span>f, -offset, <span class="keyword">self</span>.view.frame.size.width, <span class="keyword">self</span>.view.frame.size.height);</span><br><span class="line">        &#125;];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight roboconf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (void)keyboardWillHide:(NSNotification *)notify &#123;</span><br><span class="line">    //键盘隐藏动画时间</span><br><span class="line">    <span class="attribute">double duration = [[notify.userInfo objectForKey</span>:UIKeyboardAnimationDurationUserInfoKey] doubleValue];</span><br><span class="line">    //键盘隐藏动画</span><br><span class="line">    [<span class="attribute">UIView animateWithDuration</span>:duration animations:^&#123;</span><br><span class="line">        self<span class="variable">.view</span><span class="variable">.frame</span> = CGRectMake(0, 0, self<span class="variable">.view</span><span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.width</span>, self<span class="variable">.view</span><span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.height</span>);</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">-</span>(void)<span class="selector-tag">dealloc</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="selector-attr">[[NSNotificationCenter defaultCenter]</span> <span class="selector-tag">removeObserver</span><span class="selector-pseudo">:self</span> <span class="selector-tag">name</span><span class="selector-pseudo">:UIKeyboardWillShowNotification</span> <span class="selector-tag">object</span><span class="selector-pseudo">:nil</span>];</span><br><span class="line">    <span class="selector-attr">[[NSNotificationCenter defaultCenter]</span> <span class="selector-tag">removeObserver</span><span class="selector-pseudo">:self</span> <span class="selector-tag">name</span><span class="selector-pseudo">:UIKeyboardWillHideNotification</span> <span class="selector-tag">object</span><span class="selector-pseudo">:nil</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当我们在一个界面有输入交互的时,可能会出现键盘遮挡控件的问题。这次我遇到的是键盘遮挡了确认按钮，但是由于页面下方留白较多，只是简单的上移键盘的高度是不行的，简单的上移只能保证提交按钮显示在屏幕上，可能造成输入框被移出了屏幕，这就影响交互体验了。废话不多说直接上图看看实际情况</p>
+<p><img src="/img/20170523/1.png" width="200"><br><img src="/img/20170523/2.png" width="200"></p>
+<p>通过图片我们能看到不是所有的情况下都需要视图上移的，如果键盘弹起并没有影响我们的操作，就完全不需要对View进行处理，所以我在键盘显示的方法中做了判断</p>
+<p>先计算出按钮的底边y值</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">btnFrame</span><span class="selector-class">.origin</span><span class="selector-class">.y</span>+<span class="selector-tag">self</span><span class="selector-class">.view</span><span class="selector-class">.frame</span><span class="selector-class">.origin</span><span class="selector-class">.y</span>+<span class="selector-tag">btnFrame</span><span class="selector-class">.size</span><span class="selector-class">.height</span>;</span><br></pre></td></tr></table></figure>
+<p>self.view.frame.origin.y是一个动态的值，当第一个textfield为第一响应者时，view的偏移量为0，当第二个textfield为第一响应者时，可能view就向上方移动了，所以确认按钮的位置也要相应的加上这个值（此值为负，因为视图向上移动）<br>另外两个值很好解释</p>
+<p>btnFrame.origin.y: 确认按钮的y值<br>btnFrame.size.height: 确认按钮的高  </p>
+<p>计算完按钮底边的高度后，再加上当前键盘的高度<br>ps:键盘的高度不要写死，使用代码获取，因为不同状态下高度不一样</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">CGFloat</span> kbHeight = [[notification.userInfo objectForKey:<span class="built_in">UIKeyboardFrameEndUserInfoKey</span>] <span class="built_in">CGRectValue</span>].size.height;</span><br></pre></td></tr></table></figure>
+<p>两者之和如果超过屏幕高度，那么此时键盘就会对按钮造成遮挡，符合这种情况我们再对视图位置进行处理</p>
+<p>按钮底边高度 + 键盘高度 - 屏幕高度</p>
+<p>此时算出来的值就是需要向上移动的距离，为了美观，我们再加上相应的高度就可以了。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward-image.JPG" alt="GeorgeHan 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward-image.JPG" alt="GeorgeHan 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/15/苹果开发者账号申请/" rel="next" title="苹果开发者账号申请">
+                <i class="fa fa-chevron-left"></i> 苹果开发者账号申请
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/21/xcode10 import输入崩溃/" rel="prev" title="Xcode import 印号内输入就崩溃问题">
+                Xcode import 印号内输入就崩溃问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">GeorgeHan</p>
+              <p class="site-description motion-element" itemprop="description">一个程序猿的独白...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/GeorgeHY" title="GitHub &rarr; https://github.com/GeorgeHY" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GeorgeHan</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

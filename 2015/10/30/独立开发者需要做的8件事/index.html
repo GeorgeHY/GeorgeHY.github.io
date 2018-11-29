@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="追踪你的时间   你很容易忘记自己的项目到底做了多少，突然之间，我从每周有规律的40小时工作制转换到了自由工作模式，每周我都在担心自己做的工作没有上班的时候多，我下意识里知道这种感觉是不真实的，我知道虽然自己的工作时间少了，但工作效率高了，但当时我却不能说服自己这是真的。">
+<meta name="keywords" content="经验分享">
+<meta property="og:type" content="article">
+<meta property="og:title" content="独立开发者需要做的8件事">
+<meta property="og:url" content="http://www.hanyang.website/2015/10/30/独立开发者需要做的8件事/index.html">
+<meta property="og:site_name" content="GeorgeHan&#39;s Notes">
+<meta property="og:description" content="追踪你的时间   你很容易忘记自己的项目到底做了多少，突然之间，我从每周有规律的40小时工作制转换到了自由工作模式，每周我都在担心自己做的工作没有上班的时候多，我下意识里知道这种感觉是不真实的，我知道虽然自己的工作时间少了，但工作效率高了，但当时我却不能说服自己这是真的。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2016-12-12T13:09:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="独立开发者需要做的8件事">
+<meta name="twitter:description" content="追踪你的时间   你很容易忘记自己的项目到底做了多少，突然之间，我从每周有规律的40小时工作制转换到了自由工作模式，每周我都在担心自己做的工作没有上班的时候多，我下意识里知道这种感觉是不真实的，我知道虽然自己的工作时间少了，但工作效率高了，但当时我却不能说服自己这是真的。">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.hanyang.website/2015/10/30/独立开发者需要做的8件事/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>独立开发者需要做的8件事 | GeorgeHan's Notes</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">GeorgeHan's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Manners maketh man.</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2015/10/30/独立开发者需要做的8件事/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GeorgeHan">
+      <meta itemprop="description" content="一个程序猿的独白...">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GeorgeHan's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">独立开发者需要做的8件事
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-10-30 22:00:02" itemprop="dateCreated datePublished" datetime="2015-10-30T22:00:02+08:00">2015-10-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2016-12-12 21:09:40" itemprop="dateModified" datetime="2016-12-12T21:09:40+08:00">2016-12-12</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ol>
+<li>追踪你的时间</li>
+</ol>
+<hr>
+<p>你很容易忘记自己的项目到底做了多少，突然之间，我从每周有规律的40小时工作制转换到了自由工作模式，每周我都在担心自己做的工作没有上班的时候多，我下意识里知道这种感觉是不真实的，我知道虽然自己的工作时间少了，但工作效率高了，但当时我却不能说服自己这是真的。</p>
+<a id="more"></a>
+<p>所以那时候我学会了追踪工作时间的运用，我发现Toggl是非常不错的工具，因为我可以设置定制化的每周报告，当你关掉窗口的时候，这个应用还在运行。不过最困难的是，你在开始工作的时候很容易忘记打开它，结束工作的时候也容易忘掉关闭它，所以这会增加很多时间。</p>
+<p>对我来说，使用时间追踪最好的方式就是首先设定一个比较小的目标，我觉得每周10小时是个不错的起点，如果到周中的时候投入了五小时，那就意味着我的计划是没有被打乱的，多一点或者少一点都可以调节。然后，你可以增加到15、20个小时，如果你觉得应该的话，可以增加更多时间。这是很有价值的，因为它可以让你把工作和玩的时间分开。如果你不知道一周都干了什么，那就很容易熬到很晚，追踪时间可以让你调整应该有的休息时间，而不是把自己累到死。</p>
+<ol start="2">
+<li>立即写下所有东西</li>
+</ol>
+<hr>
+<p>这个习惯不仅在游戏研发中有用，在现实中对于记忆也是很有益的。重要的是把事情先写下来，否则你可能就不会去做。我在研发过程中使用的另一个应用是Trello，它就像是一块软木板，做研发的时候我始终都在一个窗口中把它打开，这样当一个BUG出现的时候，我可以随时切换并且把它写下来，然后继续研发，这基本上不会导致时间方面的损失。</p>
+<p>Google Calendar也是一个非常好的工具，因为它可以让我很简单的就能发布自己正在做什么事情，这也是另一个经常打开的窗口，如果写下来越容易，你写的可能性就更大。我试着在自己的日程表上写尽可能多的事情，比如Demos、会议、开发者演讲、见面会等等，即使其中的很多活动我没有兴趣参加，也会写下来。因为，你永远不知道什么时候觉得太累而需要停下来走出去。</p>
+<p>作为一个单枪匹马的开发者，不可能总有一个人在旁边提醒你研发过程中出现的问题，所以让技术手段承担这个角色是有必要的。</p>
+<ol start="3">
+<li>阅读游戏新闻站并做笔记</li>
+</ol>
+<hr>
+<p>假如你已经阅读了本文，那么这里说的东西你就可能知道了，但重复读一次相关内容也没有什么损害，一个人做研发，就意味着你不总是能够得到其他人足够的反馈，不管是设计决定、UI还是UX等方面。游戏开发者们很可能十多年来都使用同样的设计决定，而你才刚刚开始。这是一个充满了灵感的行业，所以你可以通过《Star Fox 64》研究飞行玩法，通过《马里奥》学习平台游戏，知道业内人都在做什么是很重要的。</p>
+<p>游戏行业本身也是如此，在线阅读文章是和开发者社区保持沟通最简单的方式，特别是这些文章和你所在领域有相关内容的情况下。从个人的角度看，我会阅读每一篇有关VR的文章，因为其他人在做同样的事情，即便是过时了的消息，有时候也可能给你带来不错的指导，这些帮助是免费的。</p>
+<ol start="4">
+<li>做好书签</li>
+</ol>
+<hr>
+<p>这一点和第三条是息息相关的，当你看到一个写的非常好的指南或者非常优秀的文章，很可能会直接调过。千万不要这么做，你可能不一定现在就阅读，但至少做个书签，方便以后的查阅，当你遇到特殊问题需要的时候，你会对自己的做法感到庆幸，而不是临时大海捞针式的寻找。</p>
+<p>在这方面，我做了很多的书签，基本上要经常进行管理，这可以经常提醒自己有哪些东西没有看或者忘了看。</p>
+<ol start="5">
+<li>购买一件帮助你思考的东西</li>
+</ol>
+<hr>
+<p>在辞职之后，我很难确定如何消费，但这是值得的，我买的是一本巨大而且空白的游戏研发书籍，它对于UI设计是有益的，可以帮助你解决游戏中的问题，或者帮你想到新的想法，我还建议你把这件物品个性化，比如我加入了很多的游戏贴纸。</p>
+<p>其他的物品还包括：巨大的笔记本、黏土模型、一杯带有Kitty形象的昂贵的茶叶或者咖啡、报刊、数字速写本等等。</p>
+<p>你知道哪个最适合你，如果没有，你可以尝试别的，我建议最好买一个便携的物品，这样在有了新想法或者遇到程序问题的时候可以随身携带。</p>
+<ol start="6">
+<li>使用在线论坛</li>
+</ol>
+<hr>
+<p>这一点对我来说很好理解，因为我是使用Unity做研发的，而他们有专门的论坛。如果你没有Unity的游戏编辑器或者只是不希望使用他们的论坛，其实还有很多的游戏研发论坛可以选择，和阅读新闻站一样，论坛总能让你学到更多游戏研发的知识。另外，在论坛中帮助别人也可以让你的很多游戏设计问题迎刃而解。</p>
+<p>使用论坛的另一个好处是，在遇到问题的时候，你寻求帮助是很方便的。</p>
+<ol start="7">
+<li>参加一些聚会，与开发者们交流</li>
+</ol>
+<hr>
+<p>或许这条意见比较适合居住在大城市里的开发者，但是，如果有可能的话，参加你本地所在的聚会，但你还需要和其他开发者们见面，如果去参加聚会而不与任何人交流，我会感到内疚的，这种活动有很多，你需要找到适合自己的，比如我很乐意参加活动，如果有人寻求帮助而我有没办法解决，最终我会和其他人讨论，或许这听起来并没有那么好，但却是双赢的。</p>
+<ol start="8">
+<li>拥有其他爱好</li>
+</ol>
+<hr>
+<p>如果你恰巧有很多的自由时间，那么就要知道很多著名游戏开发者不断告诉我们的一件事：拥有除了游戏研发之外的爱好。这是帮助你停止开发者思维的最佳方式，因为游戏开发者们往往并不是最终玩你的游戏的用户们，对于我来说，作为一个独立开发者让我有时间学习烹饪，这不仅可以从苦逼的游戏研发中得到休息，还可以让自己吃的更好一点儿。</p>
+<p>转自：<a href="http://www.cocoachina.com/game/20151029/13966.html" target="_blank" rel="noopener">http://www.cocoachina.com/game/20151029/13966.html</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat-reward-image.JPG" alt="GeorgeHan 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward-image.JPG" alt="GeorgeHan 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/经验分享/" rel="tag"># 经验分享</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/29/UIImage加载图片的两种方法及分析/" rel="next" title="UIImage加载图片的两种方法及分析">
+                <i class="fa fa-chevron-left"></i> UIImage加载图片的两种方法及分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/02/ios类方法和实例方法的区别和使用场景/" rel="prev" title="ios类方法和实例方法的区别和使用场景">
+                ios类方法和实例方法的区别和使用场景 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">GeorgeHan</p>
+              <p class="site-description motion-element" itemprop="description">一个程序猿的独白...</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/GeorgeHY" title="GitHub &rarr; https://github.com/GeorgeHY" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GeorgeHan</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
