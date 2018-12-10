@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[iOS调用系统相册、相机 显示中文标题]]></title>
+    <url>%2F2018%2F12%2F10%2FiOS%E8%B0%83%E7%94%A8%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%86%8C%E3%80%81%E7%9B%B8%E6%9C%BA-%E6%98%BE%E7%A4%BA%E4%B8%AD%E6%96%87%E6%A0%87%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[在项目的info.plist里面添加Localized resources can be mixed，Boolean类型，并设置为YES（表示是否允许应用程序获取框架库内语言）即可解决这个问题。]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[WKWebView获取当前页面前后URL]]></title>
+    <url>%2F2018%2F12%2F07%2FWKWebView%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E9%A1%B5%E9%9D%A2%E5%89%8D%E5%90%8EURL%2F</url>
+    <content type="text"><![CDATA[最近开发的app中经常有原生和页面的交互，其中一个需求是对完成订单进行评价，评价成功页面会自动跳转到评价成功界面，此时如果直接点击返回会调用页面的goback方法，可能是webview封装的问题，直接调用goback方法会出现一个问题，就是评价成功返回评价页面，导致多次评价，应该是评价成功，返回订单列表才是正常的逻辑。 暂时想到的办法是判断当前页面的前一个页面加载地址，如果包含评价页面地址的关键词则poprootVC,不包含则调用goback方法 WKWebView包含一个属性backForwardList 1@property (nonatomic, readonly, strong) WKBackForwardList *backForwardList; backForwardList是 WKBackForwardList 这个类 苹果官方对这个类的描述为 a list of visited pages used to go back and forward to the most recent page. 这个说明就非常清楚了，他是一个包含了你浏览过的上一页和下一页的列表数组，从中我们就可以获取之前跳转到此页面的地址 这个类包含了几个重要属性 123456789currentItem //当前项目backItem //紧接在当前项目之前的项目，如果没有项目则为nilforwardItem //紧跟当前项目之后的项目，如果没有项目则为nilbackList //当前项目之前的列表部分forwardList //当前项目后面的列表部分 对于当前需求我用到的是backitem 12345if ([self.wkWebView.backForwardList.backItem.URL.absoluteString containsString:@"pingjia"]) &#123;//是否是评价页面 [self.navigationController popViewControllerAnimated:YES];&#125;else&#123; [self.wkWebView goBack];&#125; 具体使用哪个属性还需要根据具体情况来判断]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[设置视图透明子视图不透明]]></title>
+    <url>%2F2018%2F12%2F07%2F%E8%AE%BE%E7%BD%AE%E8%A7%86%E5%9B%BE%E9%80%8F%E6%98%8E%E5%AD%90%E8%A7%86%E5%9B%BE%E4%B8%8D%E9%80%8F%E6%98%8E%2F</url>
+    <content type="text"><![CDATA[需求实现如下效果: 如果直接设置view的alpha值来实现透明效果，子控件也会随之变的透明 所以这里调用此方法: 1+ (UIColor *)colorWithWhite:(CGFloat)white alpha:(CGFloat)alpha; white是灰度值，alpha是透明度 white和alpha都是在0～1之间取值 white = 0 为黑色 = 1 为白色 实现此效果 1self.voiceView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.9];]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[block总结]]></title>
+    <url>%2F2018%2F11%2F29%2Fblock%E6%80%BB%E7%BB%93%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[UITextField inputView 为 UIDatePicker时如何获取picker默认时间]]></title>
+    <url>%2F2018%2F10%2F12%2FUITextField-inputView-%E4%B8%BA-UIDatePicker%E6%97%B6%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96picker%E9%BB%98%E8%AE%A4%E6%97%B6%E9%97%B4%2F</url>
+    <content type="text"><![CDATA[实现效果点击输入框选择日期,如图所示 1234567891011_beginTF = [UITextField new];_beginTF.delegate = self;UIDatePicker * datePicker = [[UIDatePicker alloc]init];//显示类型datePicker.datePickerMode = UIDatePickerModeDate;//设置语言datePicker.locale = [NSLocale localeWithLocaleIdentifier:@"zh"];[datePicker addTarget:self action:@selector(selectDate:) forControlEvents:UIControlEventValueChanged];//设置为textfield的舒服控件_beginTF.inputView = datePicker; 想要获取datepicker的时间肯定是进入selectDate方法，而触发条件是UIControlEventValueChanged很好理解，只有当datepicker的值改变时才会进入方法，我想获取默认值，直接点击完成是拿不到时间的所以要在textfield的代理方法中获取 12345678910-(void)textFieldDidEndEditing:(UITextField *)textField&#123; //因为datepicker没有设置全局变量所以这么获取 UIDatePicker * datePicker = (UIDatePicker *)textField.inputView; NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init]; [dateFormatter setDateFormat:@"yyyy-MM-dd"]; textField.text = [NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:datePicker.date]]; &#125; 这样，即使不滑动datepicker也能获取所选时间]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Xcode10开发问题: library not found for -lstdc++.6.0.9]]></title>
+    <url>%2F2018%2F10%2F11%2FiOS12%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98-library-not-found-for-lstdc-6-0-9%2F</url>
+    <content type="text"><![CDATA[更新了Xcode10之后我们运行产品，有可能会报library not found for -lstdc++.6.0.9 ,如图所示 原因是苹果更新了库，因为libstdc++已很久不用了，所以xcode10种全部改用libc++了，出现了这个问题证明项目中使用的第三方控件有可能用到了这个库，暂时的解决方法是将旧Xcode中的此文件拷贝到Xcode10中，文件夹地址是/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/这样只能保证真机运行没有问题，模拟器运行还是会报错，但是好像给相应的模拟器文件夹内拷贝此文件依然会有问题，所以彻底的解决方法只能等待用到这个库的三方框架及时更新]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[友盟分享(微信)]]></title>
+    <url>%2F2018%2F10%2F11%2F%E5%8F%8B%E7%9B%9F%E5%88%86%E4%BA%AB-%E5%BE%AE%E4%BF%A1%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS内购买]]></title>
+    <url>%2F2018%2F09%2F30%2FiOS%E5%86%85%E8%B4%AD%E4%B9%B0%2F</url>
+    <content type="text"><![CDATA[In-App Purchase功能的开发，既费神也要蒙受收入损失，那么所有涉及支付功能的都需要它么？不尽然。我只说，完全不能绕开它的情况：那就是你的产品是虚拟的，并购买该产品是在使用你的App的一定情境下的必然环节，或者说购买的产品是App环境内使用的，那么你就必须使用In-App Purchase功能。举个例子：我的App里有一篇付费文章，那么我就必须花钱才能在App内看这篇文章，那么这个商品就是必须使用In-App Purchase功能来支付的。那么反过来说，比如“百度外卖”、“膜拜单车”等一系列产品，为什么可以使用非In-App Purchase功能来付费、充值呢？因为外卖也好、自行车也好、金融理财类产品也好，他们或实体商品、或购买的商品，所使用的情景等是在App环境外的，所产生的资金不在平台内，那么这时也就可以使用支付宝、微信、银行卡等第三方API直接开发支付功能了。]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[调用接口上传json格式数组参数]]></title>
+    <url>%2F2018%2F09%2F28%2F%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3%E4%B8%8A%E4%BC%A0json%E6%A0%BC%E5%BC%8F%E6%95%B0%E7%BB%84%E5%8F%82%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[今天写项目调用一个接口需要把数据以json格式上传 数据类型是个数组，开始就把每个数组对象转成了json格式然后放到了nsarray中，但是调用接口失败 后来发现应该之前直接将数组转成json….. (我就是记录一下这个脑残的瞬间。。。)]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Tableview reloaddata之后偏移量错误]]></title>
+    <url>%2F2018%2F09%2F28%2FTableview-reloaddata%E4%B9%8B%E5%90%8E%E5%81%8F%E7%A7%BB%E9%87%8F%E9%94%99%E8%AF%AF%2F</url>
+    <content type="text"><![CDATA[今天做项目遇到了一个问题，tableview在删除一行数据执行reloaddata之后，tableview的内容会向下偏移一点，偏移高度接近于删除的行高也是上网查了一下，解决办法是放弃ios 8.0之后的自动算高 通过heightforrow对行高进行设定 12 _tableView.estimatedRowHeight = 0;// _tableView.rowHeight = UITableViewAutomaticDimension; 网上的说明是 123_tableView.estimatedRowHeight = 0;_tableView.estimatedSectionFooterHeight = 0;_tableView.estimatedSectionHeaderHeight = 0; 要三个同时设置，但是，我只设置了estimatedRowHeight就实现了效果 原理在iOS11中，tableview默认启用self-sizing，所以上面的操作就是为了关闭这个自动计算]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Xcode import 印号内输入就崩溃问题]]></title>
+    <url>%2F2018%2F09%2F21%2Fxcode10%20import%E8%BE%93%E5%85%A5%E5%B4%A9%E6%BA%83%2F</url>
+    <content type="text"><![CDATA[暂时的解决方法第一种由于项目使用cocoapods对第三方控件进行管理，为了引入cocoapods管理的三方控件头文件，做过如下图的设置 删除或者是将红框内改成non-recursive就可以解决，但是会影响到import输入后的联想 第二种xcode10使用了新的编译系统，我们可以将他改回原来的编译系统,File –&gt; Workspace Settings –&gt; Build System –&gt; Legacy Build System,具体操作如图 暂时只发现这两种方法]]></content>
+      <tags>
+        <tag>Object-c</tag>
+        <tag>Xcode10</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[解决TextField键盘遮挡问题]]></title>
+    <url>%2F2017%2F05%2F23%2F%E8%A7%A3%E5%86%B3TextField%E9%94%AE%E7%9B%98%E9%81%AE%E6%8C%A1%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[先上代码，之后说明： 12345- (void)viewDidLoad &#123; [super viewDidLoad]; [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil]; [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];&#125; 1234567891011121314151617181920212223242526- (void)keyboardWillShow:(NSNotification *)notification &#123; //获取键盘高度，在不同设备上，以及中英文下是不同的 CGFloat kbHeight = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height; CGRect btnFrame = self.confirmBtn.frame; CGFloat btnBottom = btnFrame.origin.y+self.view.frame.origin.y+btnFrame.size.height; CGFloat offset = 0; if ((btnBottom + kbHeight) &lt; SCREEN_HEIGHT) &#123; //如果确认按钮不被键盘遮挡，view不移动 return; &#125;else&#123; offset = btnBottom + kbHeight - self.view.frame.size.height + 50; &#125; // 取得键盘的动画时间，这样可以在视图上移的时候更连贯 double duration = [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue]; //将视图上移计算好的偏移 if(offset &gt; 0) &#123; [UIView animateWithDuration:duration animations:^&#123; self.view.frame = CGRectMake(0.0f, -offset, self.view.frame.size.width, self.view.frame.size.height); &#125;]; &#125;&#125; 12345678- (void)keyboardWillHide:(NSNotification *)notify &#123; //键盘隐藏动画时间 double duration = [[notify.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue]; //键盘隐藏动画 [UIView animateWithDuration:duration animations:^&#123; self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height); &#125;];&#125; 12345-(void)dealloc&#123; [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil]; [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];&#125; 当我们在一个界面有输入交互的时,可能会出现键盘遮挡控件的问题。这次我遇到的是键盘遮挡了确认按钮，但是由于页面下方留白较多，只是简单的上移键盘的高度是不行的，简单的上移只能保证提交按钮显示在屏幕上，可能造成输入框被移出了屏幕，这就影响交互体验了。废话不多说直接上图看看实际情况 通过图片我们能看到不是所有的情况下都需要视图上移的，如果键盘弹起并没有影响我们的操作，就完全不需要对View进行处理，所以我在键盘显示的方法中做了判断 先计算出按钮的底边y值 1btnFrame.origin.y+self.view.frame.origin.y+btnFrame.size.height; self.view.frame.origin.y是一个动态的值，当第一个textfield为第一响应者时，view的偏移量为0，当第二个textfield为第一响应者时，可能view就向上方移动了，所以确认按钮的位置也要相应的加上这个值（此值为负，因为视图向上移动）另外两个值很好解释 btnFrame.origin.y: 确认按钮的y值btnFrame.size.height: 确认按钮的高 计算完按钮底边的高度后，再加上当前键盘的高度ps:键盘的高度不要写死，使用代码获取，因为不同状态下高度不一样 1CGFloat kbHeight = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height; 两者之和如果超过屏幕高度，那么此时键盘就会对按钮造成遮挡，符合这种情况我们再对视图位置进行处理 按钮底边高度 + 键盘高度 - 屏幕高度 此时算出来的值就是需要向上移动的距离，为了美观，我们再加上相应的高度就可以了。]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[苹果开发者账号申请]]></title>
+    <url>%2F2017%2F05%2F15%2F%E8%8B%B9%E6%9E%9C%E5%BC%80%E5%8F%91%E8%80%85%E8%B4%A6%E5%8F%B7%E7%94%B3%E8%AF%B7%2F</url>
+    <content type="text"><![CDATA[分享一下个人开发者账号的申请流程 首先通过AppID登陆开发者平台，没有AppID的注册一下，这次就不介绍AppID的注册流程了。进入开发者平台，如果当前账号还没有成为开发者会如下图所示： 点击红框框出来的部分，开始申请 选择第一个个人开发者 填写联系信息 同意协议，点击继续 接着确认账号进行付款这里要注意，付款只接受支持VISA或者MASTERCARD的信用卡，银联的不可以，这个给客服打电话确认过 然后就会收到付款邮件以及电子收据但是此时账号还不可以用,需要等待苹果处理，苹果给的时间是48小时。最后耐心等待吧]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Tabbar.title与self.title设置不同标题]]></title>
+    <url>%2F2017%2F04%2F26%2FTabbar-title%E4%B8%8Eself-title%E8%AE%BE%E7%BD%AE%E4%B8%8D%E5%90%8C%E6%A0%87%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[今天使用self.title设置导航栏标题，但是发现设置完，tabbarItem的标题也跟着改变，但是想要的效果是导航栏与tabbar的标题不一致 设置导航栏标题: 1self.navigationItem.title = @"my title"; 设置Tabbar标题: 1self.tabBarItem.title = @"my title"; 设置标题并是两个一致: 1self.title = @"my title";]]></content>
+      <tags>
+        <tag>iOS</tag>
+        <tag>Object-c</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS懒加载的使用]]></title>
+    <url>%2F2017%2F04%2F19%2FiOS%E6%87%92%E5%8A%A0%E8%BD%BD%E7%9A%84%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[iOS中的懒加载其实就是延时加载，即当对象需要用到的时候再去加载。其实就是所谓的重写对象的get方法,当系统或者开发者调用对象的get方法时，再去加载对象。 懒加载的优点： 1. 不需将对象的实例化写到viewDidLoad，可以简化代码，增强代码的可读性 2. 对象的实例化在getter方法中，各司其职，降低耦合性 3. 对系统的内存占用率会减小 懒加载的试用(示例代码)： 12345678910111213141516171819202122232425262728293031@interface ViewController ()@property (nonatomic, strong) UIButton * dateBtn;@end- (UIButton *)dateBtn&#123; if (!_dateBtn) &#123; _dateBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 120, 30)]; [_dateBtn setTitle:@"截止日期" forState:UIControlStateNormal]; [_dateBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal]; _dateBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight; [_dateBtn addTarget:self action:@selector(dateSelect) forControlEvents:UIControlEventTouchUpInside]; &#125; return _dateBtn;&#125;-(void)viewWillAppear:(BOOL)animated&#123; [super viewWillAppear:animated]; //截止日期选择 UIBarButtonItem * rightItem = [[UIBarButtonItem alloc]initWithCustomView:self.dateBtn]; self.navigationItem.rightBarButtonItem = rightItem;&#125; 注意 123[self.view addSubview:_titleLabel];//错误（不能显示）[self.view addSubview:self.titleLabel];//正确]]></content>
+      <tags>
+        <tag>iOS</tag>
+        <tag>Object-c</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[自定义UITabBarItem title 位置]]></title>
+    <url>%2F2017%2F04%2F17%2F%E8%87%AA%E5%AE%9A%E4%B9%89UITabBarItem-title-%E4%BD%8D%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[通常我们在使用UITabbarItem都是设置他的图片以及标题，位置是苹果设置好的，上方图片下方文字。最近遇到一个需求，不需要设置图片，只设置标题。 找到一个比较好的方法： 1setTitlePositionAdjustment 使用此方法可以设置title的水平和数值的偏移量 比如： 1[[UITabBarItem appearance] setTitlePositionAdjustment:UIOffsetMake(0, -15)]; UIOffsetMake第一个值是水平偏移量，第二个值是垂直偏移量 1UIOffsetMake(CGFloat horizontal, CGFloat vertical) 显示效果：]]></content>
+      <tags>
+        <tag>iOS</tag>
+        <tag>Object-c</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 10.3新特性 使用代码更换App图标]]></title>
+    <url>%2F2017%2F04%2F14%2FiOS%2010.3%E6%96%B0%E7%89%B9%E6%80%A7%2F</url>
+    <content type="text"><![CDATA[iOS10.3开放了通过代码更改app icon的方法 1- (void)setAlternateIconName:(NSString *)alternateIconName completionHandler:(void (^)(NSError *error))completionHandler; 两个关键参数 alternateIconName 官方文档说明 The name of the alternate icon, as declared in the CFBundleAlternateIcons key of your app’s Info.plist file. Specify nil if you want to display the app’s primary icon, which you declare using the CFBundlePrimaryIcon key. Both keys are subentries of the CFBundleIcons key in your app’s Info.plist file. 其实就是替换图片的名字，然后要在Info.plist里面设置一下，具体设置方法我会在下面截图说明 completionHandler 官方说明文档 A handler to be executed with the results. After attempting to change your app’s icon, the system reports the results by calling your handler. (The handler is executed on a UIKit-provided queue, and not necessarily on your app’s main queue.) The handler has no return value and takes the following parameter: error : On success, the value of this parameter is nil. If an error occurred, this parameter contains the error object indicating what happened and the value of the alternateIconName property remains unchanged. 这个是执行完更新方法的回调，如果修改成功，参数error将为nil。 实际操作首先添加初始app icon 下面设置Info.plist 标记说明： 1. 替换图标图片名 2. 替换图标图片名（于标记1位置所填内容要一致） 3. 被替换图标图片名 Info.plist 代码设置 1234567891011121314151617181920212223&lt;key&gt;CFBundleIcons&lt;/key&gt; &lt;dict&gt; &lt;key&gt;CFBundleAlternateIcons&lt;/key&gt; &lt;dict&gt; &lt;key&gt;newIcon&lt;/key&gt; &lt;dict&gt; &lt;key&gt;CFBundleIconFiles&lt;/key&gt; &lt;array&gt; &lt;string&gt;newIcon&lt;/string&gt; &lt;/array&gt; &lt;key&gt;UIPrerenderedIcon&lt;/key&gt; &lt;false/&gt; &lt;/dict&gt; &lt;/dict&gt; &lt;key&gt;CFBundlePrimaryIcon&lt;/key&gt; &lt;dict&gt; &lt;key&gt;CFBundleIconFiles&lt;/key&gt; &lt;array&gt; &lt;string&gt;Icon60X60&lt;/string&gt; &lt;/array&gt; &lt;/dict&gt; &lt;/dict&gt; &lt;/key&gt; 如图，Primary Icon 字段写为 wifi60X60 是因为这里 xcassets 里面我只导入了 60pt@2x 和 60pt@3x 的图片资源，这里选为 60 是因为对于 iPhone，60pt 的图片资源图标所需最高质量，更低分辨率的版本系统会自动压缩以展示。pp60X60 是我的用于替换原生图标的图片资源。文件名需要和 info.plist 中保持一致（注意 info.plist 中用到了两次 “pp60X60”），同时这也是你在代码中设置图标时，需要给 API 传入的参数。同样是 60pt@2x 和 60pt@3x 的图片资源，文件不通过 Assets.xcassets 添加进来，而是直接放到目录中。如果你需要支持 iPad，建议这里使用 83.5pt（iPad Pro）的图片资源。另外还有些其他关于在 iPad 上替换图标的注意事项，在这里有说明，注意我们这里在 info.plist 里面所用的 key 是 CFBundleIcons，还有另外一个 key 是 CFBundleIcons~ipad。 替换图标部分代码： 12345678910111213141516171819202122232425262728- (IBAction)changeIcon:(UIButton *)sender &#123; if ([UIApplication sharedApplication].supportsAlternateIcons) &#123; NSLog(@"you can change this app's icon"); &#125;else&#123; NSLog(@"you can not change this app's icon"); return; &#125; NSString *iconName = [[UIApplication sharedApplication] alternateIconName]; if (iconName) &#123; // change to primary icon [[UIApplication sharedApplication] setAlternateIconName:nil completionHandler:^(NSError * _Nullable error) &#123; if (error) &#123; NSLog(@"set icon error: %@",error); &#125; NSLog(@"The alternate icon's name is %@",iconName); &#125;]; &#125;else&#123; // change to alterante icon [[UIApplication sharedApplication] setAlternateIconName:@"pp60x60" completionHandler:^(NSError * _Nullable error) &#123; if (error) &#123; NSLog(@"set icon error: %@",error); &#125; NSLog(@"The alternate icon's name is %@",iconName); &#125;]; &#125;&#125; Demo地址: https://github.com/GeorgeHY/AlterIcon]]></content>
+      <tags>
+        <tag>iOS</tag>
+        <tag>Object-c</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[abs()与fabs()区别以及在oc中使用效果]]></title>
+    <url>%2F2017%2F02%2F05%2Fabs()%E4%B8%8Efabs()%E5%8C%BA%E5%88%AB%E4%BB%A5%E5%8F%8A%E5%9C%A8oc%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%95%88%E6%9E%9C%2F</url>
+    <content type="text"><![CDATA[abs()与fabs()都是用来取绝对值的，区别在于abs()适用于整数，fabs()适用于浮点数 123456789CGFloat a = -2.03; CGFloat b = fabs(a); int c = -10; int d = abs(c); NSLog(@"b = %.2f,d = %d",b,d); 输出结果如下 1b = 2.03,d = 10]]></content>
+      <tags>
+        <tag>object-c小知识</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Swift中的可选类型与强制解析]]></title>
+    <url>%2F2017%2F02%2F05%2FSwift%E4%B8%AD%E7%9A%84%E5%8F%AF%E9%80%89%E7%B1%BB%E5%9E%8B%E4%B8%8E%E5%BC%BA%E5%88%B6%E8%A7%A3%E6%9E%90%2F</url>
+    <content type="text"><![CDATA[Swift中问号表示这是一个可选类型，白话翻译：某个常量或者变量可能是一个类型，也可能什么都没有，我不确定它是否真的会有值，也许会是nil。 比如： let number1 = “123” let number2 = number1.toInt() //number2是Int?类型 或者叫optional Int number2，可能包含Int值，也可能什么都没有（那就是nil） 当我们通过if语句判断，number2确实有值时，可以使用感叹号来表示：我确定这个可选类型的值内有正确的内容，请使用它。 if number2 != nil { println(number2!) 感叹号，被称为可选值的强制解析（无论如何请一定要使用这个值，我保证这里面肯定有东西），当然如果使用了感叹号，但最终没有值，则会在运行时报错！]]></content>
+      <tags>
+        <tag>swift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[重新与博客进行连接]]></title>
+    <url>%2F2016%2F12%2F14%2F%E9%87%8D%E6%96%B0%E4%B8%8E%E5%8D%9A%E5%AE%A2%E8%BF%9B%E8%A1%8C%E8%BF%9E%E6%8E%A5%2F</url>
+    <content type="text"><![CDATA[当我们更换电脑后可能比较困扰blog的问题，如何同步原有博客，如何写新的博客等等，我现在帮大家埋埋我所知道的坑 要操作github远程代码库，我们要有ssh key，我们用新电脑也要生成一个ssh key添加到代码库的设置中。 在终端（Terminal）输入： 1ssh-keygen -t rsa -C "Github的注册邮箱地址" 然后会在~/.ssh/下生成两个文件id_rsa和id_rsa.pub，用文本编辑打开id_rsa.pub文件，复制全部内容，打开github，进入setting/sshkey，点击添加，起一个title，然后把刚才复制的内容粘贴到下方的key输入框,点击Add SSH key进行保存。 ###安装node.js点击进入node.js官网官网 第一个坑 一定要选择红色箭头所指的版本，版本号可以与截图不一致，但是一定要选择LTS版本，这是稳定版本，我开始下载的最新版本，装上各种报错啊，也许是我的姿势不对，但是我换了版本之后就没问题了，所以，选稳妥的。 ###安装HEXO首先选择你想要安装的地址 第二个坑 强烈建议不要选择需要管理员权限才能创建文件（夹）的文件夹。 下载安装hexo 1$npm install -g hexo-cli 安装好后在终端输入： 1$hexo 若出现下图，说明安装成功: 剩下的就是把原来的blog文件夹拷贝到新电脑里 12345$ hexo g //生成博客$ hexo s //本地预览$ hexo d //远程发布 发布的时候可能会让你设置git的参数 12git config user.name "用户名"git config user.email "邮箱"]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UITableView去掉多余的横线]]></title>
+    <url>%2F2015%2F12%2F08%2FUITableView%E5%8E%BB%E6%8E%89%E5%A4%9A%E4%BD%99%E7%9A%84%E6%A8%AA%E7%BA%BF%2F</url>
+    <content type="text"><![CDATA[当我们给tableview设置数据源之后，如果数据比较少，就会出现如图所示的状况： 多出来这么没用的分隔线肯定是不美观的，如果想去掉这些分隔线，输入: tableview.tableFooterView = [UIView new]; 原理就是在新建一个空白的view给tableview的底部视图 完成后效果如图:]]></content>
+      <tags>
+        <tag>新手</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[pod命令失效解决办法]]></title>
+    <url>%2F2015%2F11%2F19%2Fpod%E5%91%BD%E4%BB%A4%E5%AE%9E%E6%95%88%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[在升级了苹果最新操作系统7.1.1之后发现终端好多命令不见了。。。你在逗我么，心态都崩了。起初我并没有发现，直到我用pod search命令寻找框架时 pod: command not found 。。。。。。。谁动了我的电脑！！！！ 然后我下意识的运行命令: sudo gem install cocoapods 重新安装，然后屏幕上出现了一行字。。。： While executing gem ... (Errno::EPERM) Operation not permitted - /usr/bin/pod wtf，什么情况，我就开始寻找解决方法 功夫不负有心人，这个问题还是让我解决了： 方法1：执行下面的命令并重启 sudo nvram boot-args=&quot;rootless=0&quot; sudo reboot 重启之后，执行这行命令检查: sudo gem install cocoapods -V 如果依旧有错误，使用第二个方案 方法2：sudo gem install -n /usr/local/bin cocoapods 安装成功，又可以愉快的编代码了]]></content>
+      <tags>
+        <tag>bug解决</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ios类方法和实例方法的区别和使用场景]]></title>
+    <url>%2F2015%2F11%2F02%2Fios%E7%B1%BB%E6%96%B9%E6%B3%95%E5%92%8C%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%2F</url>
+    <content type="text"><![CDATA[1.区别静态方法在程序开始时生成内存,实例方法在程序运行中生成内存，所以静态方法可以直接调用,实例方法要先成生实例,通过实例调用方法，静态速度很快，但是多了会占内存。静态内存是连续的,因为是在程序开始时就生成了,而实例申请的是离散的空间,所以当然没有静态方法快，而且静态内存是有限制的，太多了程序会启动不了。 2.使用场景如果需要访问或者修改某个实例的成员变量时，将该方法定义成实例方法。类方法正好相反，它不需要访问或者修改某个实例的成员变量。类方法一般用于实现一些工具方法，比如对某个对象进行扩展，或者实现单例。 类方法常驻内存，实例方法不是，所以类方法效率高但占内存。 类方法在堆上分配内存，实例方法在堆栈上。事实上所有的方法都不可能在堆或者堆栈上分配内存，方法作为代码是被加载到特殊的代码内存区域，这个内存区域是不可写的。 实例方法需要先创建实例才可以调用，比较麻烦，类方法不用，比较简单。 事实上如果一个方法与他所在类型的实例无关，那么它就应该是静态的，决不会有人把它写成实例方法。所以所有的实例方法都与实例有关，既然与实例有关，那么创建实例就是必然的步骤，没有麻烦简单一说。实际上上你可以把所有的实例方法都写成静态的，将实例作为参数传入即可。 类方法，也称静态方法，指的是用static关键字修饰的方法。此方法属类本身的方法，不属于类的某一个实例（对象）。类方法中不可直接使用实例变量。其调用方式有三种：可直接调用、类名.方法名、对象名.方法名。实例方法指的是不用static关键字修饰的方法。每个实例对象都有自身的实例方法，互相独立，不共享一个。其调用方式只能是对象名.方法名。]]></content>
+      <tags>
+        <tag>ios</tag>
+        <tag>原理分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[独立开发者需要做的8件事]]></title>
+    <url>%2F2015%2F10%2F30%2F%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91%E8%80%85%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%848%E4%BB%B6%E4%BA%8B%2F</url>
+    <content type="text"><![CDATA[追踪你的时间 你很容易忘记自己的项目到底做了多少，突然之间，我从每周有规律的40小时工作制转换到了自由工作模式，每周我都在担心自己做的工作没有上班的时候多，我下意识里知道这种感觉是不真实的，我知道虽然自己的工作时间少了，但工作效率高了，但当时我却不能说服自己这是真的。 所以那时候我学会了追踪工作时间的运用，我发现Toggl是非常不错的工具，因为我可以设置定制化的每周报告，当你关掉窗口的时候，这个应用还在运行。不过最困难的是，你在开始工作的时候很容易忘记打开它，结束工作的时候也容易忘掉关闭它，所以这会增加很多时间。 对我来说，使用时间追踪最好的方式就是首先设定一个比较小的目标，我觉得每周10小时是个不错的起点，如果到周中的时候投入了五小时，那就意味着我的计划是没有被打乱的，多一点或者少一点都可以调节。然后，你可以增加到15、20个小时，如果你觉得应该的话，可以增加更多时间。这是很有价值的，因为它可以让你把工作和玩的时间分开。如果你不知道一周都干了什么，那就很容易熬到很晚，追踪时间可以让你调整应该有的休息时间，而不是把自己累到死。 立即写下所有东西 这个习惯不仅在游戏研发中有用，在现实中对于记忆也是很有益的。重要的是把事情先写下来，否则你可能就不会去做。我在研发过程中使用的另一个应用是Trello，它就像是一块软木板，做研发的时候我始终都在一个窗口中把它打开，这样当一个BUG出现的时候，我可以随时切换并且把它写下来，然后继续研发，这基本上不会导致时间方面的损失。 Google Calendar也是一个非常好的工具，因为它可以让我很简单的就能发布自己正在做什么事情，这也是另一个经常打开的窗口，如果写下来越容易，你写的可能性就更大。我试着在自己的日程表上写尽可能多的事情，比如Demos、会议、开发者演讲、见面会等等，即使其中的很多活动我没有兴趣参加，也会写下来。因为，你永远不知道什么时候觉得太累而需要停下来走出去。 作为一个单枪匹马的开发者，不可能总有一个人在旁边提醒你研发过程中出现的问题，所以让技术手段承担这个角色是有必要的。 阅读游戏新闻站并做笔记 假如你已经阅读了本文，那么这里说的东西你就可能知道了，但重复读一次相关内容也没有什么损害，一个人做研发，就意味着你不总是能够得到其他人足够的反馈，不管是设计决定、UI还是UX等方面。游戏开发者们很可能十多年来都使用同样的设计决定，而你才刚刚开始。这是一个充满了灵感的行业，所以你可以通过《Star Fox 64》研究飞行玩法，通过《马里奥》学习平台游戏，知道业内人都在做什么是很重要的。 游戏行业本身也是如此，在线阅读文章是和开发者社区保持沟通最简单的方式，特别是这些文章和你所在领域有相关内容的情况下。从个人的角度看，我会阅读每一篇有关VR的文章，因为其他人在做同样的事情，即便是过时了的消息，有时候也可能给你带来不错的指导，这些帮助是免费的。 做好书签 这一点和第三条是息息相关的，当你看到一个写的非常好的指南或者非常优秀的文章，很可能会直接调过。千万不要这么做，你可能不一定现在就阅读，但至少做个书签，方便以后的查阅，当你遇到特殊问题需要的时候，你会对自己的做法感到庆幸，而不是临时大海捞针式的寻找。 在这方面，我做了很多的书签，基本上要经常进行管理，这可以经常提醒自己有哪些东西没有看或者忘了看。 购买一件帮助你思考的东西 在辞职之后，我很难确定如何消费，但这是值得的，我买的是一本巨大而且空白的游戏研发书籍，它对于UI设计是有益的，可以帮助你解决游戏中的问题，或者帮你想到新的想法，我还建议你把这件物品个性化，比如我加入了很多的游戏贴纸。 其他的物品还包括：巨大的笔记本、黏土模型、一杯带有Kitty形象的昂贵的茶叶或者咖啡、报刊、数字速写本等等。 你知道哪个最适合你，如果没有，你可以尝试别的，我建议最好买一个便携的物品，这样在有了新想法或者遇到程序问题的时候可以随身携带。 使用在线论坛 这一点对我来说很好理解，因为我是使用Unity做研发的，而他们有专门的论坛。如果你没有Unity的游戏编辑器或者只是不希望使用他们的论坛，其实还有很多的游戏研发论坛可以选择，和阅读新闻站一样，论坛总能让你学到更多游戏研发的知识。另外，在论坛中帮助别人也可以让你的很多游戏设计问题迎刃而解。 使用论坛的另一个好处是，在遇到问题的时候，你寻求帮助是很方便的。 参加一些聚会，与开发者们交流 或许这条意见比较适合居住在大城市里的开发者，但是，如果有可能的话，参加你本地所在的聚会，但你还需要和其他开发者们见面，如果去参加聚会而不与任何人交流，我会感到内疚的，这种活动有很多，你需要找到适合自己的，比如我很乐意参加活动，如果有人寻求帮助而我有没办法解决，最终我会和其他人讨论，或许这听起来并没有那么好，但却是双赢的。 拥有其他爱好 如果你恰巧有很多的自由时间，那么就要知道很多著名游戏开发者不断告诉我们的一件事：拥有除了游戏研发之外的爱好。这是帮助你停止开发者思维的最佳方式，因为游戏开发者们往往并不是最终玩你的游戏的用户们，对于我来说，作为一个独立开发者让我有时间学习烹饪，这不仅可以从苦逼的游戏研发中得到休息，还可以让自己吃的更好一点儿。 转自：http://www.cocoachina.com/game/20151029/13966.html]]></content>
+      <tags>
+        <tag>经验分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UIImage加载图片的两种方法及分析]]></title>
+    <url>%2F2015%2F10%2F29%2FUIImage%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95%E5%8F%8A%E5%88%86%E6%9E%90%2F</url>
+    <content type="text"><![CDATA[It depends on what you’re doing with the image. The imageNamed: method does cache the image, but in many cases that’s going to help with memory use. For example, if you load an image 10 times to display along with some text in a table view, UIImage will only keep a single representation of that image in memory instead of allocating 10 separate objects. On the other hand, if you have a very large image and you’re not re-using it, you might want to load the image from a data object to make sure it’s removed from memory when you’re done. If you don’t have any huge images, I wouldn’t worry about it. Unless you see a problem (and kudos for checking Object Allocation instead of preemptively optimizing), I would choose less lines of code over negligible memory improvements.]]></content>
+      <tags>
+        <tag>ios进阶，优化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UICollectionView的使用]]></title>
+    <url>%2F2015%2F10%2F29%2FUICollectionView%E7%9A%84%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[简单的初始化collectionView: ViewController.h #import &lt;UIKit/UIKit.h&gt; @interface ViewController : UIViewController&lt;UICollectionViewDataSource,UICollectionViewDelegateFlowLayout&gt;{ } @property (strong, nonatomic)UICollectionView *collectionView; @end ViewController.m #import &quot;ViewController.h&quot; static NSString * CellIdentifier = @&quot;UICollectionViewCell&quot;; @interface ViewController () @end @implementation ViewController 初始化 - (void)viewDidLoad { [super viewDidLoad]; //确定是水平滚动，还是垂直滚动 UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init]; //不设置显示流collectionview是无法显示的 [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical]; flowLayout.minimumInteritemSpacing = 0;//item间距 flowLayout.minimumLineSpacing = 0;//行间距 self.collectionView=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 64, 320, 200) collectionViewLayout:flowLayout]; self.collectionView.dataSource=self; self.collectionView.delegate=self; [self.collectionView setBackgroundColor:[UIColor clearColor]]; //注册Cell，必须要有 [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@&quot;UICollectionViewCell&quot;]; /**跟tableview有所区别，collectView的HeaderView与FooterView需要注册 */ //注册HeaderView [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@&quot;HeaderView&quot;]; //注册FooterView [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@&quot;FooterView&quot;]; [self.view addSubview:self.collectionView]; } UICollectionViewDataSource #pragma mark -- UICollectionViewDataSource //定义展示的UICollectionViewCell的个数 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section { return 10; } //定义展示的Section的个数 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView { return 2; } //每个UICollectionView展示的内容 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath { UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath]; cell.backgroundColor = [UIColor colorWithRed:((10 * indexPath.row) / 255.0) green:((20 * indexPath.row)/255.0) blue:((30 * indexPath.row)/255.0) alpha:1.0f]; UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 20, 20)]; label.textColor = [UIColor redColor]; label.text = [NSString stringWithFormat:@&quot;%d&quot;,indexPath.row]; [cell.contentView addSubview:label]; return cell; } UICollectionViewDelegateFlowLayout #pragma mark --UICollectionViewDelegateFlowLayout //定义每个Item 的大小 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath { return CGSizeMake(60, 60); } //定义每个UICollectionView 的 margin -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section { return UIEdgeInsetsMake(5, 5, 5, 5); } UICollectionViewDelegate #pragma mark --UICollectionViewDelegate //UICollectionView被选中时调用的方法 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath { UICollectionViewCell * cell = (UICollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath]; //临时改变个颜色，看好，只是临时改变的。如果要永久改变，可以先改数据源，然后在cellForItemAtIndexPath中控制。（和UITableView差不多吧！O(∩_∩)O~） cell.backgroundColor = [UIColor greenColor]; NSLog(@&quot;item======%d&quot;,indexPath.item); NSLog(@&quot;row=======%d&quot;,indexPath.row); NSLog(@&quot;section===%d&quot;,indexPath.section); } //返回这个UICollectionView是否可以被选择 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath { return YES; } @end HeaderView设置方法 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath { UICollectionReusableView *reusableview = nil; if (kind == UICollectionElementKindSectionHeader){ RecipeCollectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@&quot;HeaderView&quot; forIndexPath:indexPath]; NSString *title = [[NSString alloc] initWithFormat:@&quot;Recipe Group #%i&quot;,indexPath.section +1]; headerView.title.text = title; UIImage *headerImage = [UIImage imageNamed:@&quot;header_banner.png&quot;]; headerView.backgroundImage.image = headerImage; reusableView = headerView; } if (kind == UICollectionElementKindSectionFooter){ UICollectionReusableView *footerview = [collectionView dequeueResuableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@&quot;FooterView&quot; forIndexPath:indexPath]; reusableview = footerview; } return reusableview; } 设置HeaderView与FooterView的size - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section { return CGSizeMake(320， 80); } - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section { return CGSizeMake(320， 80); }]]></content>
+      <tags>
+        <tag>ios</tag>
+        <tag>新手教程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UITableViewCell右侧小箭头]]></title>
+    <url>%2F2015%2F10%2F27%2FUITableViewCell%E5%8F%B3%E4%BE%A7%E5%B0%8F%E7%AE%AD%E5%A4%B4%2F</url>
+    <content type="text"><![CDATA[需要在UITableViewCell右侧添加小箭头，只要将cell的accessorytype属性值设置为UITableViewCellAccessoryDisclosureIndicator就可以了。 代码： cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator; 还可以将此属性值设为： UITableViewCellAccessoryNone,//无效果 UITableViewCellAccessoryDetailDisclosureButton,//信息详情按钮 UITableViewCellAccessoryCheckmark//选中对勾]]></content>
+      <tags>
+        <tag>ios</tag>
+        <tag>新手</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UIButton的一些常用设置]]></title>
+    <url>%2F2015%2F10%2F27%2FUIButton%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[设置按钮上的字体大小代码： button.titleLabel.font = [UIFont systemFontOfSize:15]; 设置文字的对齐方式代码： button.textLabel.textAlignment = UITextAlignmentCenter; 但是最后我们发现这样设置是无效的，正确的设置方法为： button.contentHorizontalAlignment = UIControlContentHorizonAlignmentCenter;]]></content>
+      <tags>
+        <tag>ios</tag>
+        <tag>新手</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hexo安装问题]]></title>
+    <url>%2F2015%2F10%2F27%2Fhexo%E5%AE%89%E8%A3%85%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[前一段时间研究用hexo制作自己的博客，在安装hexo的时候遇到了一个问题(安装教程请大家自行baidu,google)，当我输入安装命令： sudo npm install hexo -g 跳了error： gyp WARN EACCES user &quot;root&quot; does not have permission to access the dev dir &quot;/Users/***/.node-gyp/4.2.1&quot; gyp WARN EACCES attempting to reinstall using temporary dev dir &quot;/usr/local/lib/node_modules/hexo/node_modules/nunjucks/node_modules/chokidar/node_modules/fsevents/.node-gyp&quot; gyp WARN install got an error, rolling back install gyp WARN install got an error, rolling back install gyp ERR! configure error gyp ERR! stack Error: connect ETIMEDOUT 104.20.23.46:443 gyp ERR! stack at Object.exports._errnoException (util.js:874:11) gyp ERR! stack at exports._exceptionWithHostPort (util.js:897:20) gyp ERR! stack at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1063:14) gyp ERR! System Darwin 15.0.0 等等（还有很多就不粘了） 后来搜了一下，找到如下指令： sudo npm install --unsafe-perm --verbose -g hexo 就成功了。。。。原理暂时不清楚，应该就是权限的事，先分享一下，遇到这种问题的可以试试]]></content>
+      <tags>
+        <tag>hexo</tag>
+        <tag>个人blog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[如何添加pch文件]]></title>
+    <url>%2F2015%2F10%2F21%2F%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0pch%E6%96%87%E4%BB%B6%2F</url>
+    <content type="text"><![CDATA[新建文件：ios-&gt; other-&gt; PCH file, 创建一个pch文件: “工程名-Prefix.pch” 将building setting中的Prefix header选项的路径添加“$(SRCROOT)/项目名称/pch文件名”（例如：${SRCROOT}/CocoaPodsDemo/CocoaPodsDemo-Prefix.pch）修改完成后，编译一下，如果有错误检查一下添加的路径是否正确。 将Precompile Prefix Header为YES，预编译后的pch文件会被缓存起来，可以提高编译速度]]></content>
+      <tags>
+        <tag>ios</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[一个程序员的料理心]]></title>
+    <url>%2F2015%2F10%2F15%2F%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E6%96%99%E7%90%86%E5%BF%83%2F</url>
+    <content type="text"><![CDATA[午餐，随便吃一点]]></content>
+      <tags>
+        <tag>美食</tag>
+        <tag>料理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CocoaPods的使用]]></title>
+    <url>%2F2015%2F10%2F14%2FCocoaPods%E7%9A%84%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[一、什么是cocoapods CocoaPods的用处 在进行iOS开发的时候，总免不了使用第三方的开源库，比如SDWebImage、AFNetworking等等。使用这些库的时候通常需要: - 下载开源库的源代码并引入工程 - 向工程中添加开源库使用到的framework - 解决开源库和开源库以及开源库和工程之间的依赖关系、检查重复添加的framework等问题 - 如果开源库有更新的时候，还需要将工程中使用的开源库删除，重新执行前面的三个步骤 自从有了CocoaPods以后，这些繁杂的工作就不再需要我们亲力亲为了，只需要我们做好少量的配置工作，CocoaPods会为我们做好一切！ 什么是CoccoaPods CocoaPods是一个负责管理iOS项目中第三方开源库的工具。它可以解决库与库之间的依赖关系，下载库的源代码，同时通过创建一个Xcode的workspace来将这些第三方库和我们的工程连接起来，供我们开发使用。使用CocoaPods的目的是让我们能自动化的、集中的、直观的管理第三方开源库。 二、安装CocoaPods 安装 CocoaPods是用Ruby实现的，要想使用它首先需要有Ruby的环境。幸运的是OS X系统默认的已经可以运行Ruby了，因此我们只需要执行以下命令： $ sudo gem install cocoapods CocoaPods是以Ruby gem包的形式被安装的。在安装执行的过程中，可能会问我们是不是更新rake，输入y即可。这是因为rake gem包会在安装的过程中检查更细，如果有可用的新版本就会出现刚才的选项。 在安装进程结束的时候，执行命令： $ pod setup 如果没有报错，就说明一切安装就成功了 安装过程中可能遇到的问题 ① 执行install命令卡住不动 这有可能是因为Ruby的默认源使用的是cocoapods.org，(国内你们懂的~~~~) 访问这个网址有时候会有问题，网上的一种解决方案是将远替换成淘宝的镜像，替换命令如下： $ gem sources --remove https://rubygems.org/ //完成此命令之后再输入以下命令 $ gem sources -a https://ruby.taobao.org/ 然后我们验证替换命令是否成功，输入： $ gem sources -l 正确的输出是： *** CURRENT SOURCES *** http://ruby.taobao.org/ ② gem版本过老 gem是管理Ruby库和程序的标准包，如果它的版本过低也可能导致安装失败，解决方案自然是升级gem，执行下述命令即可： $ sudo gem update --system 升级CocoaPods 升级很简单，再次执行安装命令即可： $ sudo gem install cocoapods 需要注意的是，如果安装的时候使用了sudo，升级的时候一样需要使用该关键字，不然升级完了以后又会出现路径不匹配问题 三、使用CocoaPods安装和准备工作已经完成，接下来我们看看怎么使用这个强大的工具。为了演示这个过程，我创建了一个名为CocoaPodsDemo的工程。 创建和编辑Podfile CocoaPods的一切都是从一个名为Podfile的文件开始的，我们需要先创建这个文件。首先cd进入进入项目根目录，然后： $vim Podfile 这时会新建好Podfile并进入编辑页面 然后根据需要输入框架名称： platform :ios, &apos;8.0&apos; pod &apos;AFNetworking&apos;, &apos;~&gt; 2.6&apos; 注：如果按示例写法，AFNetworking导入的就是指定的2.6版本，如果写成： pod &apos;AFNetworking&apos; 那么导入的就是AFNetworking可用的最新版本 然后退出编辑模式输入 :wq 进行保存。 执行导入命令 准备工作完成，开始导入第三方库： $ pod install 执行pod install命令，CocoaPods就开始为我们做下载源码、配置依赖关系、引入需要的framework等一些列工作，命令的执行结果打印出来如下： Analyzing dependencies Downloading dependencies -&gt; Installing AFNetworking (2.5.2) [!] Please close any current Xcode sessions and use `CocoaPodsDemo.xcworkspace` for this project from now on. 正确导入的话会如上显示。但是我导入时遇到了问题，执行结果如下显示： [MT] DVTAssertions: ASSERTION FAILURE in /Library/Caches/com.apple.xbs/Sources/IDEFrameworks/IDEFrameworks-8228/IDEFoundation/Initialization/IDEInitialization.m:590 Details: Assertion failed: _initializationCompletedSuccessfully Function: BOOL IDEIsInitializedForUserInteraction() Thread: &lt;NSThread: 0x7f922ce7a7b0&gt;{number = 1, name = main} Hints: None Backtrace: 0 0x000000010628da4c -[DVTAssertionHandler handleFailureInFunction:fileName:lineNumber:assertionSignature:messageFormat:arguments:] (in DVTFoundation) 1 0x000000010628d1d9 _DVTAssertionHandler (in DVTFoundation) 2 0x000000010628d445 _DVTAssertionFailureHandler (in DVTFoundation) 3 0x000000010628d3a7 _DVTAssertionFailureHandler (in DVTFoundation) 4 0x0000000107842f5c IDEIsInitializedForUserInteraction (in IDEFoundation) 5 0x000000010a45fe49 +[PBXProject projectWithFile:errorHandler:readOnly:] (in DevToolsCore) 6 0x000000010a4619ce +[PBXProject projectWithFile:errorHandler:] (in DevToolsCore) 7 0x00007fff8e018f44 ffi_call_unix64 (in libffi.dylib) Abort trap: 6 这是因为Xcode更新后与老版本Cocoapods不兼容所导致的问题，我们把Cocoapods更新到最新版本就可以正常导入了。 接下来我们来看看导入成功之后工程的变化，如下图： 可以看到，工程的根目录下多了三个东西：CocoaPodsDemo.xcworkspace、Podfile.lock文件和Pods目录。 再看看刚才执行完pod install命令打印出来的内容的最后一行： [!] Please close any current Xcode sessions and use `CocoaPodsDemo.xcworkspace` for this project from now on. 提示我们从现在起，我们需要使用CocoaPodsDemo.xcworkspace文件来开发。 对于工程发生的变化，有几点需要说明 第三方库会被编译成静态库供我们正真的工程使用CocoaPods会将所有的第三方库以target的方式组成一个名为Pods的工程，该工程就放在刚才新生成的Pods目录下。整个第三方库工程会生成一个名称为libPods.a的静态库提供给我们自己的CocoaPodsTest工程使用。 我们的工程和第三方库所在的工程会由一个新生成的workspace管理为了方便我们直观的管理工程和第三方库，CocoaPodsDemo工程和Pods工程会被以workspace的形式组织和管理，也就是我们刚才看到的CocoaPodsDemo.xcworkspace文件。 原来的工程设置已经被更改了，这时候我们直接打开原来的工程文件去编译就会报错，只能使用新生成的workspace来进行项目管理。打开CocoaPodsTest.xcworkspace，界面如下： 编译，成功！！ 参考 CocoaPods详解之—-使用篇]]></content>
+      <tags>
+        <tag>ios</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Photo1]]></title>
+    <url>%2F2015%2F10%2F13%2FPhoto1%2F</url>
+    <content type="text"><![CDATA[]]></content>
+  </entry>
+</search>
