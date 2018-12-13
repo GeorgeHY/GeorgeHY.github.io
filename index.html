@@ -321,6 +321,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2018/12/13/UITableViewHeaderFooterView-设置透明背景色/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GeorgeHan">
+      <meta itemprop="description" content="一个程序猿的独白...">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GeorgeHan's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/12/13/UITableViewHeaderFooterView-设置透明背景色/" class="post-title-link" itemprop="http://www.hanyang.website/index.html">UITableViewHeaderFooterView 设置透明背景色</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-13 14:38:52 / 修改时间：14:59:07" itemprop="dateCreated datePublished" datetime="2018-12-13T14:38:52+08:00">2018-12-13</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>页面设计如图，忽略为什么使用UITableViewHeaderFooterView，肯定是有原因的</p>
+<p><img src="/img/WX20181213-144637.png" alt=""></p>
+<p>我直接设置backgroundcolor 无效!<br>我设置contentview的backgroundcolor属性 无效!</p>
+<p>然后我确认一下他的视图结构如图</p>
+<p><img src="/img/WX20181213-145413.png" alt=""></p>
+<p>然后我又设置了他的backgroundview的backgroundcolor属性。。。结果依然是无效，背景色依然是默认的灰色</p>
+<p>最后找到的方法是</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#pragma mark - UITableViewDelegate</span></span><br><span class="line">- (<span class="keyword">void</span>)tableView:(<span class="built_in">UITableView</span> *)tableView willDisplayHeaderView:(<span class="built_in">UIView</span> *)view forSection:(<span class="built_in">NSInteger</span>)section &#123;</span><br><span class="line">    <span class="keyword">if</span> ([view isKindOfClass:[<span class="built_in">UITableViewHeaderFooterView</span> <span class="keyword">class</span>]]) &#123;</span><br><span class="line">        ((<span class="built_in">UITableViewHeaderFooterView</span> *)view).backgroundView.backgroundColor = [<span class="built_in">UIColor</span> clearColor];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时OK了，然而还不知道原因，先记录下来吧</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2018/12/10/UIImagePickerController只能获取图片的方法/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1602,151 +1752,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2018/09/28/调用接口上传json格式数组参数/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="GeorgeHan">
-      <meta itemprop="description" content="一个程序猿的独白...">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="GeorgeHan's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/09/28/调用接口上传json格式数组参数/" class="post-title-link" itemprop="http://www.hanyang.website/index.html">调用接口上传json格式数组参数</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-09-28 10:41:19 / 修改时间：10:51:02" itemprop="dateCreated datePublished" datetime="2018-09-28T10:41:19+08:00">2018-09-28</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天写项目调用一个接口需要把数据以json格式上传</p>
-<p>数据类型是个数组，开始就把每个数组对象转成了json格式然后放到了nsarray中，但是调用接口失败</p>
-<p>后来发现应该之前直接将数组转成json…..</p>
-<p>(我就是记录一下这个脑残的瞬间。。。)</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1794,7 +1799,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">35</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
