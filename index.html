@@ -321,6 +321,149 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2019/02/11/ios程序默认语言设置中文/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GeorgeHan">
+      <meta itemprop="description" content="一个程序猿的独白...">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GeorgeHan's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/11/ios程序默认语言设置中文/" class="post-title-link" itemprop="http://www.hanyang.website/index.html">ios程序默认语言设置中文</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-11 11:19:24 / 修改时间：11:26:05" itemprop="dateCreated datePublished" datetime="2019-02-11T11:19:24+08:00">2019-02-11</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近修改老项目的问题，友盟分享界面是英文的，但是手机系统设置的是中文,可以通过在 info.plst 文件里选择 Localization native development region 来设置。</p>
+<p><img src="/img/WX20190211-111747.png" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2019/02/11/WKWebView背景色修改/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1673,150 +1816,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2018/10/11/iOS12开发问题-library-not-found-for-lstdc-6-0-9/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="GeorgeHan">
-      <meta itemprop="description" content="一个程序猿的独白...">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="GeorgeHan's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/10/11/iOS12开发问题-library-not-found-for-lstdc-6-0-9/" class="post-title-link" itemprop="http://www.hanyang.website/index.html">Xcode10开发问题: library not found for -lstdc++.6.0.9</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-10-11 13:16:07 / 修改时间：16:40:27" itemprop="dateCreated datePublished" datetime="2018-10-11T13:16:07+08:00">2018-10-11</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>更新了Xcode10之后我们运行产品，有可能会报library not found for -lstdc++.6.0.9 ,如图所示</p>
-<p><img src="/img/WX20181011-162743@2x.png" alt=""></p>
-<p>原因是苹果更新了库，因为libstdc++已很久不用了，所以xcode10种全部改用libc++了，出现了这个问题证明项目中使用的第三方控件有可能用到了这个库，暂时的解决方法是将旧Xcode中的此文件拷贝到Xcode10中，文件夹地址是/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/<br>这样只能保证真机运行没有问题，模拟器运行还是会报错，但是好像给相应的模拟器文件夹内拷贝此文件依然会有问题，所以彻底的解决方法只能等待用到这个库的三方框架及时更新</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1864,7 +1863,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-count">38</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

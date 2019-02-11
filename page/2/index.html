@@ -321,6 +321,150 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2018/10/11/iOS12开发问题-library-not-found-for-lstdc-6-0-9/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GeorgeHan">
+      <meta itemprop="description" content="一个程序猿的独白...">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GeorgeHan's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/10/11/iOS12开发问题-library-not-found-for-lstdc-6-0-9/" class="post-title-link" itemprop="http://www.hanyang.website/page/2/index.html">Xcode10开发问题: library not found for -lstdc++.6.0.9</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-11 13:16:07 / 修改时间：16:40:27" itemprop="dateCreated datePublished" datetime="2018-10-11T13:16:07+08:00">2018-10-11</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>更新了Xcode10之后我们运行产品，有可能会报library not found for -lstdc++.6.0.9 ,如图所示</p>
+<p><img src="/img/WX20181011-162743@2x.png" alt=""></p>
+<p>原因是苹果更新了库，因为libstdc++已很久不用了，所以xcode10种全部改用libc++了，出现了这个问题证明项目中使用的第三方控件有可能用到了这个库，暂时的解决方法是将旧Xcode中的此文件拷贝到Xcode10中，文件夹地址是/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/<br>这样只能保证真机运行没有问题，模拟器运行还是会报错，但是好像给相应的模拟器文件夹内拷贝此文件依然会有问题，所以彻底的解决方法只能等待用到这个库的三方框架及时更新</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2018/10/11/友盟分享-微信/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1631,157 +1775,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2017/04/17/自定义UITabBarItem-title-位置/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="GeorgeHan">
-      <meta itemprop="description" content="一个程序猿的独白...">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="GeorgeHan's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/04/17/自定义UITabBarItem-title-位置/" class="post-title-link" itemprop="http://www.hanyang.website/page/2/index.html">自定义UITabBarItem title 位置</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-04-17 15:20:21 / 修改时间：15:42:32" itemprop="dateCreated datePublished" datetime="2017-04-17T15:20:21+08:00">2017-04-17</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>通常我们在使用UITabbarItem都是设置他的图片以及标题，位置是苹果设置好的，上方图片下方文字。最近遇到一个需求，不需要设置图片，只设置标题。</p>
-<p>找到一个比较好的方法：</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">setTitlePositionAdjustment</span></span><br></pre></td></tr></table></figure>
-<p>使用此方法可以设置title的水平和数值的偏移量</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2017/04/17/自定义UITabBarItem-title-位置/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1829,7 +1822,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-count">38</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

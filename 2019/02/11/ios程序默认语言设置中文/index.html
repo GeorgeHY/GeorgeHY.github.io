@@ -108,27 +108,26 @@
 
 
 
-  <meta name="description" content="页面设计如图，忽略为什么使用UITableViewHeaderFooterView，肯定是有原因的  我直接设置backgroundcolor 无效!我设置contentview的backgroundcolor属性 无效! 然后我确认一下他的视图结构如图  然后我又设置了他的backgroundview的backgroundcolor属性。。。结果依然是无效，背景色依然是默认的灰色 最后找到的方法">
+  <meta name="description" content="最近修改老项目的问题，友盟分享界面是英文的，但是手机系统设置的是中文,可以通过在 info.plst 文件里选择 Localization native development region 来设置。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UITableViewHeaderFooterView 设置透明背景色">
-<meta property="og:url" content="http://www.hanyang.website/2018/12/13/UITableViewHeaderFooterView-设置透明背景色/index.html">
+<meta property="og:title" content="ios程序默认语言设置中文">
+<meta property="og:url" content="http://www.hanyang.website/2019/02/11/ios程序默认语言设置中文/index.html">
 <meta property="og:site_name" content="GeorgeHan&#39;s Notes">
-<meta property="og:description" content="页面设计如图，忽略为什么使用UITableViewHeaderFooterView，肯定是有原因的  我直接设置backgroundcolor 无效!我设置contentview的backgroundcolor属性 无效! 然后我确认一下他的视图结构如图  然后我又设置了他的backgroundview的backgroundcolor属性。。。结果依然是无效，背景色依然是默认的灰色 最后找到的方法">
+<meta property="og:description" content="最近修改老项目的问题，友盟分享界面是英文的，但是手机系统设置的是中文,可以通过在 info.plst 文件里选择 Localization native development region 来设置。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.hanyang.website/img/WX20181213-144637.png">
-<meta property="og:image" content="http://www.hanyang.website/img/WX20181213-145413.png">
-<meta property="og:updated_time" content="2018-12-13T06:59:07.000Z">
+<meta property="og:image" content="http://www.hanyang.website/img/WX20190211-111747.png">
+<meta property="og:updated_time" content="2019-02-11T03:26:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UITableViewHeaderFooterView 设置透明背景色">
-<meta name="twitter:description" content="页面设计如图，忽略为什么使用UITableViewHeaderFooterView，肯定是有原因的  我直接设置backgroundcolor 无效!我设置contentview的backgroundcolor属性 无效! 然后我确认一下他的视图结构如图  然后我又设置了他的backgroundview的backgroundcolor属性。。。结果依然是无效，背景色依然是默认的灰色 最后找到的方法">
-<meta name="twitter:image" content="http://www.hanyang.website/img/WX20181213-144637.png">
+<meta name="twitter:title" content="ios程序默认语言设置中文">
+<meta name="twitter:description" content="最近修改老项目的问题，友盟分享界面是英文的，但是手机系统设置的是中文,可以通过在 info.plst 文件里选择 Localization native development region 来设置。">
+<meta name="twitter:image" content="http://www.hanyang.website/img/WX20190211-111747.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://www.hanyang.website/2018/12/13/UITableViewHeaderFooterView-设置透明背景色/">
+  <link rel="canonical" href="http://www.hanyang.website/2019/02/11/ios程序默认语言设置中文/">
 
 
 
@@ -138,7 +137,7 @@
   };
 </script>
 
-  <title>UITableViewHeaderFooterView 设置透明背景色 | GeorgeHan's Notes</title>
+  <title>ios程序默认语言设置中文 | GeorgeHan's Notes</title>
   
 
 
@@ -324,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2018/12/13/UITableViewHeaderFooterView-设置透明背景色/">
+    <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2019/02/11/ios程序默认语言设置中文/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="GeorgeHan">
@@ -341,7 +340,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">UITableViewHeaderFooterView 设置透明背景色
+          <h1 class="post-title" itemprop="name headline">ios程序默认语言设置中文
               
             
           </h1>
@@ -366,7 +365,7 @@
                 
               
 
-              <time title="创建时间：2018-12-13 14:38:52 / 修改时间：14:59:07" itemprop="dateCreated datePublished" datetime="2018-12-13T14:38:52+08:00">2018-12-13</time>
+              <time title="创建时间：2019-02-11 11:19:24 / 修改时间：11:26:05" itemprop="dateCreated datePublished" datetime="2019-02-11T11:19:24+08:00">2019-02-11</time>
             
 
             
@@ -404,15 +403,8 @@
       
 
       
-        <p>页面设计如图，忽略为什么使用UITableViewHeaderFooterView，肯定是有原因的</p>
-<p><img src="/img/WX20181213-144637.png" alt=""></p>
-<p>我直接设置backgroundcolor 无效!<br>我设置contentview的backgroundcolor属性 无效!</p>
-<p>然后我确认一下他的视图结构如图</p>
-<p><img src="/img/WX20181213-145413.png" alt=""></p>
-<p>然后我又设置了他的backgroundview的backgroundcolor属性。。。结果依然是无效，背景色依然是默认的灰色</p>
-<p>最后找到的方法是</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#pragma mark - UITableViewDelegate</span></span><br><span class="line">- (<span class="keyword">void</span>)tableView:(<span class="built_in">UITableView</span> *)tableView willDisplayHeaderView:(<span class="built_in">UIView</span> *)view forSection:(<span class="built_in">NSInteger</span>)section &#123;</span><br><span class="line">    <span class="keyword">if</span> ([view isKindOfClass:[<span class="built_in">UITableViewHeaderFooterView</span> <span class="keyword">class</span>]]) &#123;</span><br><span class="line">        ((<span class="built_in">UITableViewHeaderFooterView</span> *)view).backgroundView.backgroundColor = [<span class="built_in">UIColor</span> clearColor];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>此时OK了，然而还不知道原因，先记录下来吧</p>
+        <p>最近修改老项目的问题，友盟分享界面是英文的，但是手机系统设置的是中文,可以通过在 info.plst 文件里选择 Localization native development region 来设置。</p>
+<p><img src="/img/WX20190211-111747.png" alt=""></p>
 
       
     </div>
@@ -526,8 +518,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/10/UIImagePickerController只能获取图片的方法/" rel="next" title="UIImagePickerController只能获取图片的方法">
-                <i class="fa fa-chevron-left"></i> UIImagePickerController只能获取图片的方法
+              <a href="/2019/02/11/WKWebView背景色修改/" rel="next" title="WKWebView背景色修改">
+                <i class="fa fa-chevron-left"></i> WKWebView背景色修改
               </a>
             
           </div>
@@ -535,10 +527,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/14/订阅型内购探索/" rel="prev" title="订阅型内购探索">
-                订阅型内购探索 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

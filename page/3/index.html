@@ -321,6 +321,157 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2017/04/17/自定义UITabBarItem-title-位置/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GeorgeHan">
+      <meta itemprop="description" content="一个程序猿的独白...">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GeorgeHan's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/04/17/自定义UITabBarItem-title-位置/" class="post-title-link" itemprop="http://www.hanyang.website/page/3/index.html">自定义UITabBarItem title 位置</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-04-17 15:20:21 / 修改时间：15:42:32" itemprop="dateCreated datePublished" datetime="2017-04-17T15:20:21+08:00">2017-04-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>通常我们在使用UITabbarItem都是设置他的图片以及标题，位置是苹果设置好的，上方图片下方文字。最近遇到一个需求，不需要设置图片，只设置标题。</p>
+<p>找到一个比较好的方法：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">setTitlePositionAdjustment</span></span><br></pre></td></tr></table></figure>
+<p>使用此方法可以设置title的水平和数值的偏移量</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2017/04/17/自定义UITabBarItem-title-位置/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2017/04/14/iOS 10.3新特性/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -490,6 +641,157 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2017/02/05/Swift中的可选类型与强制解析/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GeorgeHan">
+      <meta itemprop="description" content="一个程序猿的独白...">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GeorgeHan's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/02/05/Swift中的可选类型与强制解析/" class="post-title-link" itemprop="http://www.hanyang.website/page/3/index.html">Swift中的可选类型与强制解析</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-02-05 16:05:00 / 修改时间：16:05:42" itemprop="dateCreated datePublished" datetime="2017-02-05T16:05:00+08:00">2017-02-05</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Swift中问号表示这是一个可选类型，白话翻译：某个常量或者变量可能是一个类型，也可能什么都没有，我不确定它是否真的会有值，也许会是nil。</p>
+<p>比如：</p>
+<p>let number1 = “123”</p>
+<p>let number2 = number1.toInt()</p>
+<p>//number2是Int?类型 或者叫optional Int</p>
+<p>number2，可能包含Int值，也可能什么都没有（那就是nil）</p>
+<p>当我们通过if语句判断，number2确实有值时，可以使用感叹号来表示：我确定这个可选类型的值内有正确的内容，请使用它。</p>
+<p>if number2 != nil {</p>
+<pre><code>println(number2!)
+</code></pre><p>感叹号，被称为可选值的强制解析（无论如何请一定要使用这个值，我保证这里面肯定有东西），当然如果使用了感叹号，但最终没有值，则会在运行时报错！</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2017/02/05/abs()与fabs()区别以及在oc中使用效果/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -591,157 +893,6 @@
 <figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CGFloat a = <span class="number">-2.03</span><span class="comment">;</span></span><br><span class="line">        </span><br><span class="line">CGFloat b = fabs(<span class="name">a</span>)<span class="comment">;</span></span><br><span class="line">        </span><br><span class="line">int c = <span class="number">-10</span><span class="comment">;</span></span><br><span class="line">        </span><br><span class="line">int d = abs(<span class="name">c</span>)<span class="comment">;</span></span><br><span class="line">        </span><br><span class="line">NSLog(@<span class="string">"b = %.2f,d = %d"</span>,b,d)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
 <p>输出结果如下</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">b</span> = <span class="number">2.03</span>,d = <span class="number">10</span></span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2017/02/05/Swift中的可选类型与强制解析/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="GeorgeHan">
-      <meta itemprop="description" content="一个程序猿的独白...">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="GeorgeHan's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/02/05/Swift中的可选类型与强制解析/" class="post-title-link" itemprop="http://www.hanyang.website/page/3/index.html">Swift中的可选类型与强制解析</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-02-05 16:05:00 / 修改时间：16:05:42" itemprop="dateCreated datePublished" datetime="2017-02-05T16:05:00+08:00">2017-02-05</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Swift中问号表示这是一个可选类型，白话翻译：某个常量或者变量可能是一个类型，也可能什么都没有，我不确定它是否真的会有值，也许会是nil。</p>
-<p>比如：</p>
-<p>let number1 = “123”</p>
-<p>let number2 = number1.toInt()</p>
-<p>//number2是Int?类型 或者叫optional Int</p>
-<p>number2，可能包含Int值，也可能什么都没有（那就是nil）</p>
-<p>当我们通过if语句判断，number2确实有值时，可以使用感叹号来表示：我确定这个可选类型的值内有正确的内容，请使用它。</p>
-<p>if number2 != nil {</p>
-<pre><code>println(number2!)
-</code></pre><p>感叹号，被称为可选值的强制解析（无论如何请一定要使用这个值，我保证这里面肯定有东西），当然如果使用了感叹号，但最终没有值，则会在运行时报错！</p>
-
           
         
       
@@ -1731,176 +1882,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2015/10/29/UICollectionView的使用/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="GeorgeHan">
-      <meta itemprop="description" content="一个程序猿的独白...">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="GeorgeHan's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2015/10/29/UICollectionView的使用/" class="post-title-link" itemprop="http://www.hanyang.website/page/3/index.html">UICollectionView的使用</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2015-10-29 22:43:48" itemprop="dateCreated datePublished" datetime="2015-10-29T22:43:48+08:00">2015-10-29</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2016-12-12 21:09:24" itemprop="dateModified" datetime="2016-12-12T21:09:24+08:00">2016-12-12</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>简单的初始化collectionView:</p>
-<p>ViewController.h</p>
-<pre><code>#import &lt;UIKit/UIKit.h&gt;
-
-@interface ViewController : UIViewController&lt;UICollectionViewDataSource,UICollectionViewDelegateFlowLayout&gt;{
-
-}
-@property (strong, nonatomic)UICollectionView *collectionView;
-
-@end
-</code></pre>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2015/10/29/UICollectionView的使用/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1948,7 +1929,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-count">38</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
