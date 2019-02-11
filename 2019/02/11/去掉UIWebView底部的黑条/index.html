@@ -108,26 +108,27 @@
 
 
 
-  <meta name="description" content="实现效果点击输入框选择日期,如图所示  1234567891011_beginTF = [UITextField new];_beginTF.delegate = self;UIDatePicker * datePicker = [[UIDatePicker alloc]init];//显示类型datePicker.datePickerMode = UIDatePickerModeDate;//设">
+  <meta name="description" content="使用UIWebView显示内容，滑动到最下方发现有一个黑线，如图  隐藏的做法其实很简单，只需要将opaque设为NO，背景色设为clearColor即可。 12_webView.backgroundColor = [UIColor clearColor];_webView.opaque = NO;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UITextField inputView 为 UIDatePicker时如何获取picker默认时间">
-<meta property="og:url" content="http://www.hanyang.website/2018/10/12/UITextField-inputView-为-UIDatePicker时如何获取picker默认时间/index.html">
+<meta property="og:title" content="去掉UIWebView底部的黑条">
+<meta property="og:url" content="http://www.hanyang.website/2019/02/11/去掉UIWebView底部的黑条/index.html">
 <meta property="og:site_name" content="GeorgeHan&#39;s Notes">
-<meta property="og:description" content="实现效果点击输入框选择日期,如图所示  1234567891011_beginTF = [UITextField new];_beginTF.delegate = self;UIDatePicker * datePicker = [[UIDatePicker alloc]init];//显示类型datePicker.datePickerMode = UIDatePickerModeDate;//设">
+<meta property="og:description" content="使用UIWebView显示内容，滑动到最下方发现有一个黑线，如图  隐藏的做法其实很简单，只需要将opaque设为NO，背景色设为clearColor即可。 12_webView.backgroundColor = [UIColor clearColor];_webView.opaque = NO;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.hanyang.website/img/WX20181012-115345@2x.png">
-<meta property="og:updated_time" content="2018-10-12T05:20:37.000Z">
+<meta property="og:image" content="http://www.hanyang.website/img/WX20190211-114836.png">
+<meta property="og:image" content="http://www.hanyang.website/img/WX20190211-114851.png">
+<meta property="og:updated_time" content="2019-02-11T03:53:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UITextField inputView 为 UIDatePicker时如何获取picker默认时间">
-<meta name="twitter:description" content="实现效果点击输入框选择日期,如图所示  1234567891011_beginTF = [UITextField new];_beginTF.delegate = self;UIDatePicker * datePicker = [[UIDatePicker alloc]init];//显示类型datePicker.datePickerMode = UIDatePickerModeDate;//设">
-<meta name="twitter:image" content="http://www.hanyang.website/img/WX20181012-115345@2x.png">
+<meta name="twitter:title" content="去掉UIWebView底部的黑条">
+<meta name="twitter:description" content="使用UIWebView显示内容，滑动到最下方发现有一个黑线，如图  隐藏的做法其实很简单，只需要将opaque设为NO，背景色设为clearColor即可。 12_webView.backgroundColor = [UIColor clearColor];_webView.opaque = NO;">
+<meta name="twitter:image" content="http://www.hanyang.website/img/WX20190211-114836.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://www.hanyang.website/2018/10/12/UITextField-inputView-为-UIDatePicker时如何获取picker默认时间/">
+  <link rel="canonical" href="http://www.hanyang.website/2019/02/11/去掉UIWebView底部的黑条/">
 
 
 
@@ -137,7 +138,7 @@
   };
 </script>
 
-  <title>UITextField inputView 为 UIDatePicker时如何获取picker默认时间 | GeorgeHan's Notes</title>
+  <title>去掉UIWebView底部的黑条 | GeorgeHan's Notes</title>
   
 
 
@@ -323,7 +324,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2018/10/12/UITextField-inputView-为-UIDatePicker时如何获取picker默认时间/">
+    <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2019/02/11/去掉UIWebView底部的黑条/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="GeorgeHan">
@@ -340,7 +341,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">UITextField inputView 为 UIDatePicker时如何获取picker默认时间
+          <h1 class="post-title" itemprop="name headline">去掉UIWebView底部的黑条
               
             
           </h1>
@@ -365,7 +366,7 @@
                 
               
 
-              <time title="创建时间：2018-10-12 11:14:52 / 修改时间：13:20:37" itemprop="dateCreated datePublished" datetime="2018-10-12T11:14:52+08:00">2018-10-12</time>
+              <time title="创建时间：2019-02-11 11:49:40 / 修改时间：11:53:21" itemprop="dateCreated datePublished" datetime="2019-02-11T11:49:40+08:00">2019-02-11</time>
             
 
             
@@ -403,12 +404,11 @@
       
 
       
-        <p>实现效果点击输入框选择日期,如图所示</p>
-<p><img src="/img/WX20181012-115345@2x.png" alt=""></p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">_beginTF = [<span class="built_in">UITextField</span> new];</span><br><span class="line">_beginTF.delegate = <span class="keyword">self</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">UIDatePicker</span> * datePicker = [[<span class="built_in">UIDatePicker</span> alloc]init];</span><br><span class="line"><span class="comment">//显示类型</span></span><br><span class="line">datePicker.datePickerMode = <span class="built_in">UIDatePickerModeDate</span>;</span><br><span class="line"><span class="comment">//设置语言</span></span><br><span class="line">datePicker.locale = [<span class="built_in">NSLocale</span> localeWithLocaleIdentifier:<span class="string">@"zh"</span>];</span><br><span class="line">[datePicker addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(selectDate:) forControlEvents:<span class="built_in">UIControlEventValueChanged</span>];</span><br><span class="line"><span class="comment">//设置为textfield的舒服控件</span></span><br><span class="line">_beginTF.inputView = datePicker;</span><br></pre></td></tr></table></figure>
-<p>想要获取datepicker的时间肯定是进入selectDate方法，而触发条件是UIControlEventValueChanged很好理解，只有当datepicker的值改变时才会进入方法，我想获取默认值，直接点击完成是拿不到时间的所以要在textfield的代理方法中获取</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">void</span>)textFieldDidEndEditing:(<span class="built_in">UITextField</span> *)textField</span><br><span class="line">&#123;</span><br><span class="line"> 	<span class="comment">//因为datepicker没有设置全局变量所以这么获取</span></span><br><span class="line">    <span class="built_in">UIDatePicker</span> * datePicker = (<span class="built_in">UIDatePicker</span> *)textField.inputView;</span><br><span class="line">    <span class="built_in">NSDateFormatter</span> *dateFormatter = [[<span class="built_in">NSDateFormatter</span> alloc]init];</span><br><span class="line">    [dateFormatter setDateFormat:<span class="string">@"yyyy-MM-dd"</span>];</span><br><span class="line">    textField.text = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@"</span>,[dateFormatter stringFromDate:datePicker.date]];</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样，即使不滑动datepicker也能获取所选时间</p>
+        <p>使用UIWebView显示内容，滑动到最下方发现有一个黑线，如图</p>
+<p><img src="/img/WX20190211-114836.png" alt=""></p>
+<p>隐藏的做法其实很简单，只需要将opaque设为NO，背景色设为clearColor即可。</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_webView.<span class="keyword">backgroundColor </span>= [UIColor clearColor]<span class="comment">;</span></span><br><span class="line">_webView.opaque = NO<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/img/WX20190211-114851.png" alt=""></p>
 
       
     </div>
@@ -522,8 +522,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/11/iOS12开发问题-library-not-found-for-lstdc-6-0-9/" rel="next" title="Xcode10开发问题: library not found for -lstdc++.6.0.9">
-                <i class="fa fa-chevron-left"></i> Xcode10开发问题: library not found for -lstdc++.6.0.9
+              <a href="/2019/02/11/ios程序默认语言设置中文/" rel="next" title="ios程序默认语言设置中文">
+                <i class="fa fa-chevron-left"></i> ios程序默认语言设置中文
               </a>
             
           </div>
@@ -531,10 +531,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/29/block总结/" rel="prev" title="block总结">
-                block总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
