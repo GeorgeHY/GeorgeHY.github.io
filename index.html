@@ -321,6 +321,350 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2019/02/11/WKWebView背景色修改/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GeorgeHan">
+      <meta itemprop="description" content="一个程序猿的独白...">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GeorgeHan's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/11/WKWebView背景色修改/" class="post-title-link" itemprop="http://www.hanyang.website/index.html">WKWebView背景色修改</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-11 10:52:29 / 修改时间：11:05:56" itemprop="dateCreated datePublished" datetime="2019-02-11T10:52:29+08:00">2019-02-11</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>项目中部分内容需要使用webview显示，但是简单的加载html背景色是白的，如果前端人员没有设置背景色，可以在页面加载完成后，进行设置</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[webView evaluateJavaScript:@<span class="string">"document.body.style.backgroundColor=\"</span><span class="meta">#8627C5\<span class="string">""</span> completionHandler:nil]<span class="comment">;</span></span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2019/01/14/订阅型内购探索/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GeorgeHan">
+      <meta itemprop="description" content="一个程序猿的独白...">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GeorgeHan's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/14/订阅型内购探索/" class="post-title-link" itemprop="http://www.hanyang.website/index.html">订阅型内购探索</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-14 11:44:04 / 修改时间：13:17:17" itemprop="dateCreated datePublished" datetime="2019-01-14T11:44:04+08:00">2019-01-14</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近几个项目都因为会员购买问题，需要增加苹果内购，而且这种内购，苹果建议使用订阅型内购（建议就是，你不用，拒绝上架，非常nice）然后问题来了，网上资料不是很全，而且大部分都是消耗型内购的例子或者代码，只是简单的把苹果内购当作支付工具。订阅型内购，苹果有自己的一套完整流程，需要和自身交易流程处理妥当。</p>
+<p>先看一下苹果官方文档举的杂志阅读权限的例子</p>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>事件</th>
+<th>订阅状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2月1日</td>
+<td>2月刊发布，用户不能看，因为用户尚未订阅</td>
+<td>尚未订阅</td>
+<td>　</td>
+</tr>
+<tr>
+<td>2月20日</td>
+<td>用户订购月计划，2月刊是最新的，可以立即阅读</td>
+<td>激活</td>
+<td></td>
+</tr>
+<tr>
+<td>3月1日</td>
+<td>3月刊发布，因为用户内购激活状态，可以阅读</td>
+<td>激活</td>
+<td></td>
+</tr>
+<tr>
+<td>3月20日</td>
+<td>自动续订一个月</td>
+<td>激活</td>
+<td></td>
+</tr>
+<tr>
+<td>4月1日</td>
+<td>4月刊发布，因为用户内购激活状态，可以阅读</td>
+<td>激活</td>
+<td></td>
+</tr>
+<tr>
+<td>4月20日</td>
+<td>用户取消订阅，订阅期结束</td>
+<td>期满结束</td>
+<td></td>
+</tr>
+<tr>
+<td>Autolink</td>
+<td><a href="http://t.co" target="_blank" rel="noopener">http://t.co</a></td>
+<td><a href="http://t.co" target="_blank" rel="noopener">http://t.co</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Footnotes</td>
+<td>[\^4] and [\^4]:</td>
+<td>[^4] and footnote 4</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2018/12/13/UITableViewHeaderFooterView-设置透明背景色/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1473,285 +1817,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2018/10/11/友盟分享-微信/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="GeorgeHan">
-      <meta itemprop="description" content="一个程序猿的独白...">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="GeorgeHan's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/10/11/友盟分享-微信/" class="post-title-link" itemprop="http://www.hanyang.website/index.html">友盟分享(微信)</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-10-11 13:07:18" itemprop="dateCreated datePublished" datetime="2018-10-11T13:07:18+08:00">2018-10-11</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.hanyang.website/2018/09/30/iOS内购买/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="GeorgeHan">
-      <meta itemprop="description" content="一个程序猿的独白...">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="GeorgeHan's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/09/30/iOS内购买/" class="post-title-link" itemprop="http://www.hanyang.website/index.html">iOS内购买</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-09-30 11:41:42 / 修改时间：17:03:50" itemprop="dateCreated datePublished" datetime="2018-09-30T11:41:42+08:00">2018-09-30</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>In-App Purchase功能的开发，既费神也要蒙受收入损失，那么所有涉及支付功能的都需要它么？不尽然。我只说，完全不能绕开它的情况：那就是你的产品是虚拟的，并购买该产品是在使用你的App的一定情境下的必然环节，或者说购买的产品是App环境内使用的，那么你就必须使用In-App Purchase功能。举个例子：我的App里有一篇付费文章，那么我就必须花钱才能在App内看这篇文章，那么这个商品就是必须使用In-App Purchase功能来支付的。那么反过来说，比如“百度外卖”、“膜拜单车”等一系列产品，为什么可以使用非In-App Purchase功能来付费、充值呢？因为外卖也好、自行车也好、金融理财类产品也好，他们或实体商品、或购买的商品，所使用的情景等是在App环境外的，所产生的资金不在平台内，那么这时也就可以使用支付宝、微信、银行卡等第三方API直接开发支付功能了。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1799,7 +1864,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">35</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1900,7 +1965,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

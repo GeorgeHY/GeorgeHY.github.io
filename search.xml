@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[WKWebView背景色修改]]></title>
+    <url>%2F2019%2F02%2F11%2FWKWebView%E8%83%8C%E6%99%AF%E8%89%B2%E4%BF%AE%E6%94%B9%2F</url>
+    <content type="text"><![CDATA[项目中部分内容需要使用webview显示，但是简单的加载html背景色是白的，如果前端人员没有设置背景色，可以在页面加载完成后，进行设置 1[webView evaluateJavaScript:@"document.body.style.backgroundColor=\"#8627C5\"" completionHandler:nil];]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[订阅型内购探索]]></title>
+    <url>%2F2019%2F01%2F14%2F%E8%AE%A2%E9%98%85%E5%9E%8B%E5%86%85%E8%B4%AD%E6%8E%A2%E7%B4%A2%2F</url>
+    <content type="text"><![CDATA[最近几个项目都因为会员购买问题，需要增加苹果内购，而且这种内购，苹果建议使用订阅型内购（建议就是，你不用，拒绝上架，非常nice）然后问题来了，网上资料不是很全，而且大部分都是消耗型内购的例子或者代码，只是简单的把苹果内购当作支付工具。订阅型内购，苹果有自己的一套完整流程，需要和自身交易流程处理妥当。 先看一下苹果官方文档举的杂志阅读权限的例子 日期 事件 订阅状态 2月1日 2月刊发布，用户不能看，因为用户尚未订阅 尚未订阅 2月20日 用户订购月计划，2月刊是最新的，可以立即阅读 激活 3月1日 3月刊发布，因为用户内购激活状态，可以阅读 激活 3月20日 自动续订一个月 激活 4月1日 4月刊发布，因为用户内购激活状态，可以阅读 激活 4月20日 用户取消订阅，订阅期结束 期满结束 Autolink http://t.co http://t.co Footnotes [\^4] and [\^4]: [^4] and footnote 4]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[UITableViewHeaderFooterView 设置透明背景色]]></title>
     <url>%2F2018%2F12%2F13%2FUITableViewHeaderFooterView-%E8%AE%BE%E7%BD%AE%E9%80%8F%E6%98%8E%E8%83%8C%E6%99%AF%E8%89%B2%2F</url>
     <content type="text"><![CDATA[页面设计如图，忽略为什么使用UITableViewHeaderFooterView，肯定是有原因的 我直接设置backgroundcolor 无效!我设置contentview的backgroundcolor属性 无效! 然后我确认一下他的视图结构如图 然后我又设置了他的backgroundview的backgroundcolor属性。。。结果依然是无效，背景色依然是默认的灰色 最后找到的方法是 123456#pragma mark - UITableViewDelegate- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section &#123; if ([view isKindOfClass:[UITableViewHeaderFooterView class]]) &#123; ((UITableViewHeaderFooterView *)view).backgroundView.backgroundColor = [UIColor clearColor]; &#125;&#125; 此时OK了，然而还不知道原因，先记录下来吧]]></content>
